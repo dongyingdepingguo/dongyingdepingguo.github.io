@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="声明：以下操作全部基于Mac OS操作系统  ###写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。 ##一、一些必要的软件的安装 ###1.安装Node.js可以去Node.js官网安装 ###2.安装git可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入安装homeb">
+<meta name="description" content="声明：以下操作全部基于Mac OS操作系统  写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。  一、一些必要的软件的安装 ###1.安装Node.js可以去Node.js官网安装 ###2.安装git可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入安装homebrew1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="github+hexo建立个人博客网站">
 <meta property="og:url" content="http://yoursite.com/2018/03/31/github-hexo建立个人博客网站/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="声明：以下操作全部基于Mac OS操作系统  ###写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。 ##一、一些必要的软件的安装 ###1.安装Node.js可以去Node.js官网安装 ###2.安装git可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入安装homeb">
+<meta property="og:description" content="声明：以下操作全部基于Mac OS操作系统  写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。  一、一些必要的软件的安装 ###1.安装Node.js可以去Node.js官网安装 ###2.安装git可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入安装homebrew1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/source/post_image/fix_DNS.jpg">
 <meta property="og:image" content="http://yoursite.com/source/post_image/fix_DNSPod.jpg%20修改后">
-<meta property="og:updated_time" content="2018-03-31T08:53:28.358Z">
+<meta property="og:updated_time" content="2018-03-31T09:06:39.206Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="github+hexo建立个人博客网站">
-<meta name="twitter:description" content="声明：以下操作全部基于Mac OS操作系统  ###写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。 ##一、一些必要的软件的安装 ###1.安装Node.js可以去Node.js官网安装 ###2.安装git可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入安装homeb">
+<meta name="twitter:description" content="声明：以下操作全部基于Mac OS操作系统  写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。  一、一些必要的软件的安装 ###1.安装Node.js可以去Node.js官网安装 ###2.安装git可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入安装homebrew1">
 <meta name="twitter:image" content="http://yoursite.com/source/post_image/fix_DNS.jpg">
 
 
@@ -334,8 +334,9 @@
       
         <blockquote><p>声明：以下操作全部基于Mac OS操作系统</p>
 </blockquote>
-<p>###写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。</p>
-<p>##一、一些必要的软件的安装</p>
+<font size="4">写在前面：学Python的时候看到很多个人博客，被其简洁大方的界面吸引，遂决定自己动手弄一个。</font>
+
+<p><font size="5">一、一些必要的软件的安装</font></p>
 <p>###1.安装Node.js<br>可以去Node.js官网安装</p>
 <p>###2.安装git<br>可以在终端直接输入git检查是否已经安装git。如果没安装，可使用homebrew安装。如果homebrew也没安装，在终端中输入<br><figure class="highlight python"><figcaption><span>安装homebrew</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby -e <span class="string">"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"</span></span><br></pre></td></tr></table></figure></p>
 <p>homebrew安装完毕后，再输入<br><figure class="highlight python"><figcaption><span>安装git</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install git</span><br></pre></td></tr></table></figure><br>安装完毕后注册</p>
@@ -353,7 +354,7 @@
 <p>###3.域名解析<br>注册一个<a href="https://www.dnspod.cn/" target="_blank" rel="noopener">DNSPod</a>账号，登录之后把我们新注册的域名加进去，在域名解析界面添加3条记录<br><blockquote><p>@          A             192.30.252.153<br>@          A             192.30.252.154<br>www      CNAME         username.github.io.</p>
 </blockquote><br>改完后的结果大概是这样的</p>
 <span itemprop="image" itemscope="" itemtype="http://schema.org/ImageObject"><img itemprop="url image" src="/source/post_image/fix_DNSPod.jpg 修改后" class="full-image"><meta itemprop="width" content="auto"><meta itemprop="height" content="auto"></span>
-<p>###4.添加CNAME文件<br>用文本编辑器新建一个名为CNAME的文本文件，内容仅仅是你的域名地址，即<a href="http://www.xxxxxx.com/net啥的。添加完内容后删去后缀名！！！将该文件放入本地博客的source文件夹里面，然后一下命令更新到GitHub。（每次修改完本地博客文件后最好都要输入以下命令）" target="_blank" rel="noopener">www.xxxxxx.com/net啥的。添加完内容后删去后缀名！！！将该文件放入本地博客的source文件夹里面，然后一下命令更新到GitHub。（每次修改完本地博客文件后最好都要输入以下命令）</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure><br>到此域名绑定就成功了</p>
+<p>###4.添加CNAME文件<br>用文本编辑器新建一个名为CNAME的文本文件，内容仅仅是你的域名地址，即 <a href="http://www.xxxxxx.com/net" target="_blank" rel="noopener">www.xxxxxx.com/net</a> 啥的。添加完内容后删去后缀名！！！将该文件放入本地博客的source文件夹里面，然后一下命令更新到GitHub。（每次修改完本地博客文件后最好都要输入以下命令）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d </span><br></pre></td></tr></table></figure><br>到此域名绑定就成功了</p>
 <p>关于站点和主题的更多配置可以参看<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">这里</a>以及<a href="https://hexo.io/zh-cn/docs/tag-plugins.html#Image" target="_blank" rel="noopener">这里</a></p>
 
       
