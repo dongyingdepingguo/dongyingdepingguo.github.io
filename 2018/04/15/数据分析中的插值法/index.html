@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。    一、拉格朗日插值法    已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+a_">
+<meta name="description" content="写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。      一、拉格朗日插值法    已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+">
 <meta name="keywords" content="数据分析">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据分析中的插值法">
 <meta property="og:url" content="http://yoursite.com/2018/04/15/数据分析中的插值法/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。    一、拉格朗日插值法    已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+a_">
+<meta property="og:description" content="写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。      一、拉格朗日插值法    已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-15T08:45:49.722Z">
+<meta property="og:updated_time" content="2018-04-15T08:52:04.471Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据分析中的插值法">
-<meta name="twitter:description" content="写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。    一、拉格朗日插值法    已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+a_">
+<meta name="twitter:description" content="写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。      一、拉格朗日插值法    已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+">
 
 
 
@@ -352,7 +352,7 @@
         <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>  </p>
 <font color="RoyalBlue">写在前面：在数据处理过程中常常会碰到一些异常数据，或者缺失数据，但不能对它们不做处理，也不能直接丢掉，因而需要让这些异常数据变的正常，或者将缺失的的数据补足，这就用到了各种插值法。</font>  
 
-<font size="4">一、拉格朗日插值法</font>  
+  <font size="4">一、拉格朗日插值法</font>  
 
 <p>已知 \(n\) 个 \(x\) 值互不相等的点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)，可以找到一个\(n-1\)次多项式\(y=a_0+a_1x+a_2x^2+\;…\;+a_{n-1}x^{n-1}\),使其过这\(n\)个点。  </p>
 <p>设该\(n-1\)次多项式为：<br>$$<br>y=a_0+a_1x+a_2x^2+\;…\;a_{n-1}x^{n-1}<br>$$<br>将\(n\)个点\((x_1,y_1)\;(x_2,y_2)\;…\;(x_n,y_n)\)代入多项式函数，得<br>$$<br>y_1=a_0+a_1x_1+a_2x_1^2+\;…\;+a_{n-1}x_1^{n-1}<br>$$<br>$$<br>y_2=a_0+a_1x_2+a_2x_2^2+\;…\;+a_{n-1}x_2^{n-1}<br>$$<br>$$…$$<br>$$y_n=a_0+a_1x_n+a_2x_n^2+\;…\;+a_{n-1}x_{n}^{n-1}<br>$$<br>解得拉格朗日插值多项式为：<br>$$<br>\begin{split}<br>L(x)&amp;= y_1\frac{(x-x_2)(x-x_3)…(x-x_n)}{(x_1-x_2)(x_1-x_3)…(x_1-x_n)}\\<br>&amp;+y_2\frac{(x-x_1)(x-x_3)…(x-x_n)}{(x_2-x_1)(x_2-x_3)…(x_2-x_n)}\\<br>&amp;+……\\<br>&amp;+y_n\frac{(x-x_1)(x-x_2)…(x-x_{n-1})}{(x_n-x_1)(x_n-x_2)…(x_n-x_{n-1})}\\<br>&amp;=\sum_{i=0}^ny_i\prod_{j=0,j\neq{i}}^n\frac{x-x_j}{x_i-x_j}<br>\end{split}<br>$$<br>拉格朗日插值多项式还可写成：$$L(x)=\sum_{i=0}^ny_il_i(x)$$其中\(l_i(x)\)拉格朗日基本多项式（或称插值基函数）$$l_i(x)=\prod_{j=0,j\neq{i}}^n\frac{x-x_j}{x_i-x_j}$$由于当插值节点个数发生变化时，所有的插值基函数都会随之变化，这在计算时很不方便，为克服这一缺点，提出牛顿插值法。 而且，当插值点较多时，拉格朗日插值多项式的次数可能会很高，因此具有数值不稳定的特点，会出现在某些给定值的附近其拉格朗日多项式值与实际值偏差很大的情况。 </p>
