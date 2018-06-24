@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="数据分析," />
 
 
 
@@ -79,20 +79,22 @@
 
 
 
-<meta name="description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
+<meta name="description" content="关联规则分析最早是为了发现超市销售数据库中不同的商品之间的关联关系。例如购买了面包的顾客同时非常有可能会购买牛奶，这就导致出了一条关联规则“面包——&amp;gt;牛奶”，其中面包称为规则的前项，而牛奶称为后项。通过对面包降低售价进行促销，而适当提高牛奶的售价，关联销售的牛奶就有可能增加超市整体的利润。        关联规则和频繁项集       1.项集项集是项的集合。包含k个项的项集成为k项集，如集">
+<meta name="keywords" content="数据分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="神经网络--反向传播算法">
-<meta property="og:url" content="http://yoursite.com/2018/05/22/神经网络-反向传播算法/index.html">
+<meta property="og:title" content="关联规则">
+<meta property="og:url" content="http://yoursite.com/2018/06/17/关联规则/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
+<meta property="og:description" content="关联规则分析最早是为了发现超市销售数据库中不同的商品之间的关联关系。例如购买了面包的顾客同时非常有可能会购买牛奶，这就导致出了一条关联规则“面包——&amp;gt;牛奶”，其中面包称为规则的前项，而牛奶称为后项。通过对面包降低售价进行促销，而适当提高牛奶的售价，关联销售的牛奶就有可能增加超市整体的利润。        关联规则和频繁项集       1.项集项集是项的集合。包含k个项的项集成为k项集，如集">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png">
-<meta property="og:updated_time" content="2018-06-01T09:54:11.833Z">
+<meta property="og:image" content="http://yoursite.com/2018/06/17/关联规则/%27购物篮数据%27">
+<meta property="og:image" content="http://yoursite.com/2018/06/17/关联规则/%27FP-Tree%27">
+<meta property="og:image" content="http://yoursite.com/2018/06/17/关联规则/%27Beer后缀的条件FP-Tree%27">
+<meta property="og:updated_time" content="2018-06-24T03:05:19.228Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神经网络--反向传播算法">
-<meta name="twitter:description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png">
+<meta name="twitter:title" content="关联规则">
+<meta name="twitter:description" content="关联规则分析最早是为了发现超市销售数据库中不同的商品之间的关联关系。例如购买了面包的顾客同时非常有可能会购买牛奶，这就导致出了一条关联规则“面包——&amp;gt;牛奶”，其中面包称为规则的前项，而牛奶称为后项。通过对面包降低售价进行促销，而适当提高牛奶的售价，关联销售的牛奶就有可能增加超市整体的利润。        关联规则和频繁项集       1.项集项集是项的集合。包含k个项的项集成为k项集，如集">
+<meta name="twitter:image" content="http://yoursite.com/2018/06/17/关联规则/%27购物篮数据%27">
 
 
 
@@ -122,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/22/神经网络-反向传播算法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/06/17/关联规则/"/>
 
 
 
 
 
-  <title>神经网络--反向传播算法 | 冻硬的苹果</title>
+  <title>关联规则 | 冻硬的苹果</title>
   
 
 
@@ -275,7 +277,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/神经网络-反向传播算法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/06/17/关联规则/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冻硬的苹果">
@@ -292,7 +294,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">神经网络--反向传播算法</h1>
+          <h1 class="post-title" itemprop="name headline">关联规则</h1>
         
 
         <div class="post-meta">
@@ -304,8 +306,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T19:10:41+08:00">
-                2018-05-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-17T18:54:43+08:00">
+                2018-06-17
               </time>
             
 
@@ -343,7 +345,7 @@
 
           
           
-             <span id="/2018/05/22/神经网络-反向传播算法/" class="leancloud_visitors" data-flag-title="神经网络--反向传播算法">
+             <span id="/2018/06/17/关联规则/" class="leancloud_visitors" data-flag-title="关联规则">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,15 +376,26 @@
       
 
       
-        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<font color="blue">前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。</font>       
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script><br>关联规则分析最早是为了发现超市销售数据库中不同的商品之间的关联关系。例如购买了面包的顾客同时非常有可能会购买牛奶，这就导致出了一条关联规则“面包——&gt;牛奶”，其中面包称为规则的前项，而牛奶称为后项。通过对面包降低售价进行促销，而适当提高牛奶的售价，关联销售的牛奶就有可能增加超市整体的利润。       </p>
+<font size="3"><strong>关联规则和频繁项集</strong></font>     
 
-<p>神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。       </p>
-<p>但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我们只需要找到我们所处位置的梯度，沿着梯度反方向就能找到最快下山的路线。假设我们站在\((x_0\,,y_0)\)的位置，则该位置的梯度为\((\left. \frac{\partial f}{\partial x} \right|_{x=x_0,y=y_0},\left. \frac{\partial f}{\partial y} \right|_{x=x_0,y=y_0})\)，那么下一刻你需要调整的位置为\((x_0-\left. \frac{\partial f}{\partial x} \right|_{x=x_0,y=y_0},y_0-\left. \frac{\partial f}{\partial y} \right|_{x=x_0,y=y_0})\)。这种方法叫梯度下降法，通过使用这种方法来调整权值和偏置，使代价函数降到最小。       </p>
-<p><img src="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png" alt="图片还没出来么？" title="图一"><br>上图是一个三层的神经网络模型，第一层为输入层，第二层为隐含层，第三层为输出层。其中\(\,w_{jk}^l\,\)表示第\(\,l\,\)层第\(\,j\,\)个神经元与第\(\,l-1\,\)层第\(\,k\,\)个神经元之间的权值。         </p>
-<p><img src="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png" alt="图片还没出来么？" title="图二"><br>图二中\(\,a_j^l\,\)表示第\(\,l\,\)层第\(\,j\,\)个神经元的输出值，\(\,b_k^l\,\)表示第\(\,l\,\)层第\(\,k\,\)个神经元的偏置。设代价函数为\(C_0\)，则有如下公式：<br>$$<br>\begin{align}<br>C_0&amp;=\sum_{j=0}^{n_l-1}(a_j^l-y_j)^2\\<br>a_j^l&amp;=\sigma(z_j^l)\\<br>z_j^l&amp;=\sum_{k=0}^{n_k-1}a_k^{l-1}w_{jk}^l+b_j^l<br>\end{align}<br>$$<br>如果此时神经网络中的权值为\((w_0,w_1…w_m)\)，那么我们需要找到代价函数\(\,C_0\,\)相对于此刻权值的梯度\((\frac{\partial C_0}{\partial w_0},\frac{\partial C_0}{\partial w_1}…\frac{\partial C_0}{\partial w_m})\)。根据链式法则，有<br>$$<br>\frac{\partial C_0}{\partial w_{jk}^l}=\frac{\partial C_0}{\partial a_j^l}\frac{\partial a_j^l}{\partial z_j^l}\frac{\partial z_j^l}{\partial w_{jk}^l}<br>$$<br>其中<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial a_j^l}&amp;=2(a_j^l-y_j)\\<br>\frac{\partial a_j^l}{\partial z_j^l}&amp;=\sigma’(z_j^l)\\<br>\frac{\partial z_j^l}{\partial w_{jk}^l}&amp;=a_k^{l-1}<br>\end{align}<br>$$<br>所以<br>$$<br>\frac{\partial C_0}{\partial w_{jk}^l}=2(a_j^l-y_j)\sigma’(z_j^l)a_k^{l-1}<br>$$<br>同理<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial b_j^l}&amp;=2(a_j^l-y_j)\sigma’(z_j^l)\\<br>\frac{\partial C_0}{\partial a_j^{l-1}}&amp;=2(a_j^l-y_j)\sigma’(z_j^l)w_{jk}^l<br>\end{align}<br>$$<br>但是对于\(\frac{\partial C_0}{\partial a_j^{l-1}}\)，由于\(a_j^{l-1}\)的变化会影响到\(\,l\,\)层所有输出值，则<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial a_j^{l-1}}&amp;=\sum_{j=0}^{n_l-1}\frac{\partial C_0}{\partial a_j^l}\frac{\partial a_j^l}{\partial z_j^l}\frac{\partial z_j^l}{\partial a_{k}^{l-1}}\\<br>\frac{\partial C_0}{\partial a_j^{l-1}}&amp;=\sum_{j=0}^{n_l-1}2(a_j^l-y_j)\sigma’(z_j^l)w_{jk}^l<br>\end{align}<br>$$<br>之前说过，神经网络的训练过程就是通过调整权值和偏置的值来使代价函数降到最小，那么此处求代价函数对于\(\,l-1\,\)层输出值的偏导有何意义？因为我们在求\(\frac{\partial C_0}{\partial w_{jk}^{l-1}}\)需要用到这个值。<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial w_{jk}^{l-1}}&amp;=\frac{\partial C_0}{\partial a_j^{l-1}}\frac{\partial a_j^{l-1}}{\partial z_j^{l-1}}\frac{\partial z_j^{l-1}}{\partial w_{jk}^{l-1}}\\<br>&amp;=\sum_{j=0}^{n_l-1}2(a_j^l-y_j)\sigma’(z_j^l)w_{jk}^l \cdot \sigma’(z_j^{l-1})w_{jk}^{l-1}<br>\end{align}<br>$$<br>无论神经网络有多少层，都可以如此类推。到此，误差在各个层之间的传递以及各层间权值的调整已经很清楚了。     </p>
-<p>以上的代价函数和\(\,\sigma\,\)函数可根据需求选取。     </p>
-<font color="blue">后记：让我着迷至今的神经网络到此先告一段。</font>
+<p><strong>1.项集</strong><br>项集是项的集合。包含k个项的项集成为k项集，如集合{牛奶，麦片，糖}是一个3项集。<br>项集的出现频率是所有包含项集的事务计数，又称作绝对支持度或支持度计数。如果项集I的相对支持度满足预定的最小支持度阈值，则I是频繁项集。       </p>
+<p><strong>2.关联规则的一般形式</strong><br>项集A、B同时发生的概率称为关联规则的支持度（也称相对支持度）。<br>$$<br>Support(A-&gt;B)=P(A \cup B)<br>$$<br>项集A发生，则项集B发生的概率为关联规则的置信度。<br>$$<br>Confidence(A-&gt;B)=P(B \mid A)<br>$$<br><strong>3.最小支持度和最小置信度</strong><br>最小支持度是用户或专家的衡量支持度的一个阈值，表示项目集在统计意义上的最低重要性；最小置信度是用户或专家定义的衡量置信度的一个阈值，表示关联规则的最低可靠性。同时满足最小支持度阈值和最小置信度的规则称作强规则。       </p>
+<p><strong>4.支持度计数</strong><br>项集A的支持度计数是事务数据集中包含项集A的事务个数，简称为项集的频率或计数。         </p>
+<p>已知项集的支持度计数，则规则A-&gt;B的支持度和置信度很容易从所有事务计数、项集A和项集\(A \cup B\)的支持度计数推出。<br>$$<br>\begin{align}<br>Support(A-&gt;B)&amp;=\frac{A,B同时发生的事务个数}{所有事物个数}\\<br>&amp; = \frac{Support-count(A \cup B)}{Total-count(A)}<br>\end{align}<br>$$<br>$$<br>\begin{align}<br>Confidence(A-&gt;B)=P(A \mid B)&amp;= \frac{Support(A \cup B)}{Support(B)}\\<br>&amp;=\frac{Support-count(A \cup B)}{Total-count(A)}<br>\end{align}<br>$$<br>一旦得到所有事务个数，A、B和\(A \cup B\)的支持度计数，就可以导出对应的关联规则A—&gt;B和B—&gt;A，并检查改规则是否为强规则。     </p>
+<font size="3"><strong>关联规则算法</strong></font>     
+
+<p><strong>1.Apriori算法</strong><br>Apriori算法是最经典的挖掘频繁项集的算法，第一次实现了在大数据集上可行的关联规则提取，其核心思想是通过已确定的频繁项集内部连接，生成候选项集，然后扫描数据集，对候选项集的非频繁项集进行剪枝，生成下一个频繁项集。      </p>
+<p>Apriori算法过程分为两个步骤：<br>第一步通过迭代，检索出事务数据库中的所有频繁项集，即支持度不低于设定的阈值的项集。<br>第二步利用频繁项集构造出满足用户最小信任度的关联规则。       </p>
+<p>该算法主要利用了一个性质：任一频繁项集的所有非空子集也必须是频繁的。反之，非频繁项集的超集一定是非频繁项集。        </p>
+<p>具体步骤如下：<br>先搜索出候选1项集及对应的支持度，剪枝去掉低于支持度的1项集，得到频繁1项集。然后对剩下的频繁1项集进行连接，得到候选的频繁2项集，去掉低于支持度的候选频繁2项集，得到真正的频繁2项集，以此类推，迭代下去，知道无法找到频繁K+1项集为止，对应的频繁K项集的集合即为算法的输出结果。         </p>
+<p>Apriori算法流程：<br>输入：数据集合D，支持度阈值\(\,\alpha\,\)。<br>输出：最大的频繁K项集。<br>（1）扫描整个数据集，得到所有出现过的数据，作为候选频繁1项集。K=1，频繁0项集为空集。<br>（2）挖掘频繁K项集<br>&emsp;&emsp;（a）扫描数据计算候选频繁K项集的支持度。<br>&emsp;&emsp;（b）去除候选频繁K项集中支持度低于阈值的数据集，得到频繁K项集。<br>&emsp;&emsp;（c）基于频繁K项集，连接生成候选频繁K+1项集。<br>（3）令K=K+1，转入步骤2。<br>Apriori算法每轮迭代都要扫描数据集，因此在数据集很大，数据种类很多的时候，算法效率很低。于是，便有了FP-Growth算法。     </p>
+<p><strong>2.FP-Growth算法</strong><br>在关联分析中，频繁项集的挖掘最常用到的就是Apriori算法。Apriori算法是一种先产生候选项再检验是否为频繁的“产生-测试”的方法。这种方法的弊端是当数据集很大时，需要不断扫描数据集造成运算效率很低。而FP-Growth算法很好地解决了这个问题。它的思路是把数据集中的事务映射到一棵FP-Tree上面，再根据这棵树找出频繁项集。FP-Tree的构建过程只需要扫描两次数据集。       </p>
+<p>FP-Growth算法大体上可分为两步：<br>（1）FP-Tree的构建；<br>（2）FP-Tree上频繁项集的挖掘。     </p>
+<p>具体步骤：<br>第一步：构建FP-Tree<br>1.扫描一遍数据库，找出频繁项的列表L，按照支持度计数递减排序。<br>2.再次扫描数据库，由每个事务不断构建FP-Tree：<br>&emsp;&emsp;（a）FP-Tree的根节点为null。<br>&emsp;&emsp;（b）从数据库中取出事务，按照L排序，然后把每个项逐个添加到FP-Tree的分支上去。<br>3.最后创建头结点表，该表的作用是将所有相同的项链接起来，这样比较容易遍历。        </p>
+<p>第二步：从FP-Tree提取频繁项集<br>这一步有点麻烦，举个栗子来说明。<br>假设有四位顾客去超市买东西，TID代表交易的流水号，Items代表一次交易的商品。<br><img src="&#39;购物篮数据&#39;" alt="图片出来了吗"><br>先构造FP-Tree：<br>1.扫描数据库，找出频繁项的列表L，按照支持度计数递减排序。即：<br>L=&lt;(Cola:3),(Diaper:3),(Beer:3),(Ham:2)&gt;<br>2.再次扫描数据库，由每个事务不断构建FP-Tree。即创建FP-Tree的根节点null，再从数据库中取出事务，按照L排序，然后把每个项逐个添加到FP-Tree的分枝上。最后创建头结点表。<br><img src="&#39;FP-Tree&#39;" alt="图片出来了吗"><br>3.提取频繁项集（具体步骤）<br>（1）寻找以“Ham”为后缀的频繁项集<br>&emsp;&emsp;(a)根据头结点表找出“Ham”结尾的路径：&lt;Cola:3, Ham:1&gt;和&lt;Cola:3, Diaper:2, Beer:2, Ham:1&gt;，代表的意义是：原数据集中（Cola, Ham）和（Cola, Diaper, Beer, Ham）各出现一次。<br>&emsp;&emsp;(b)“Ham”的两个前缀路径{(Cola:1), (Cola Diaper Beer:1)}构成了“Ham”的<strong>条件模式基</strong>。条件模式基的计数定义为“Ham”的计数。<br>&emsp;&emsp;(c)根据条件模式基“Ham”的条件FP-Tree：因为在Ham的条件模式基中Diaper，Beer只出现一次，Coal出现两次，所以Diaper，Beer是非频繁项，不包含在Ham的条件FP-Tree中。<br>&emsp;&emsp;(d)“Ham”的条件FP-Tree只有一个分支<a href="Cola:2" target="_blank" rel="noopener">Cola:2</a>，得到条件频繁项集{Cola:2}。<br>&emsp;&emsp;(e)条件频繁项集{Cola:2}和后缀“Ham”合并，得到频繁项集{Cola Ham:2}。<br>（2）以同样的方法找“Beer”后缀的频繁项集<br>&emsp;&emsp;(a)“Beer”的条件模式基有{(Cola Diaper:2), (Diaper:1)}。<br>&emsp;&emsp;(b)构造“Beer”的条件FP-Tree如图。<br><img src="&#39;Beer后缀的条件FP-Tree&#39;" alt="图片出来了吗"><br>&emsp;&emsp;(c)找出“Beer”为后缀的频繁项集为{Cola Diaper Beer:2}，{Diaper Beer:3}，{Cola Beer:2}。<br>（3）同上找出所有的频繁项集。       </p>
+<p><strong>参考文章</strong><br>1.<a href="https://blog.csdn.net/Bone_ACE/article/details/46669699" target="_blank" rel="noopener">FP-Growth算法的介绍</a><br>2.<a href="https://blog.csdn.net/javastart/article/details/50521453" target="_blank" rel="noopener">FP-growth算法，fpgrowth算法详解</a><br>3.<a href="https://blog.csdn.net/u011067360/article/details/24810415" target="_blank" rel="noopener">数据挖掘十大算法--Apriori算法</a><br>4.<a href="https://blog.csdn.net/Bone_ACE/article/details/46660819" target="_blank" rel="noopener">Apriori算法的介绍</a><br>5.<a href="https://www.cnblogs.com/pinard/p/6293298.html" target="_blank" rel="noopener">Apriori算法原理总结</a></p>
+
       
     </div>
     
@@ -397,6 +410,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
 
       
       
@@ -406,8 +425,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/15/记一次Python在实际工作中的使用/" rel="next" title="记一次Python在实际工作中的使用">
-                <i class="fa fa-chevron-left"></i> 记一次Python在实际工作中的使用
+              <a href="/2018/06/10/K-Means聚类算法/" rel="next" title="K-Means聚类算法">
+                <i class="fa fa-chevron-left"></i> K-Means聚类算法
               </a>
             
           </div>
@@ -415,10 +434,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/29/关于《逃避自由》/" rel="prev" title="关于《逃避自由》">
-                关于《逃避自由》 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>

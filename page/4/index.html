@@ -79,20 +79,16 @@
 
 
 
-<meta name="description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
-<meta property="og:type" content="article">
-<meta property="og:title" content="神经网络--反向传播算法">
-<meta property="og:url" content="http://yoursite.com/2018/05/22/神经网络-反向传播算法/index.html">
+<meta name="description" content="企者不立 跨者不行">
+<meta property="og:type" content="website">
+<meta property="og:title" content="冻硬的苹果">
+<meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
+<meta property="og:description" content="企者不立 跨者不行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png">
-<meta property="og:updated_time" content="2018-06-01T09:54:11.833Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="神经网络--反向传播算法">
-<meta name="twitter:description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png">
+<meta name="twitter:title" content="冻硬的苹果">
+<meta name="twitter:description" content="企者不立 跨者不行">
 
 
 
@@ -122,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/05/22/神经网络-反向传播算法/"/>
+  <link rel="canonical" href="http://yoursite.com/page/4/"/>
 
 
 
 
 
-  <title>神经网络--反向传播算法 | 冻硬的苹果</title>
+  <title>冻硬的苹果</title>
   
 
 
@@ -157,7 +153,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -260,9 +257,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -275,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/22/神经网络-反向传播算法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/31/Mac-os-常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冻硬的苹果">
@@ -292,7 +289,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">神经网络--反向传播算法</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/31/Mac-os-常用命令/" itemprop="url">Mac os 常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -304,8 +303,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-22T19:10:41+08:00">
-                2018-05-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T13:36:48+08:00">
+                2018-03-31
               </time>
             
 
@@ -315,35 +314,12 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术篇/" itemprop="url" rel="index">
-                    <span itemprop="name">技术篇</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
 
           
           
-             <span id="/2018/05/22/神经网络-反向传播算法/" class="leancloud_visitors" data-flag-title="神经网络--反向传播算法">
+             <span id="/2018/03/31/Mac-os-常用命令/" class="leancloud_visitors" data-flag-title="Mac os 常用命令">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -374,15 +350,21 @@
       
 
       
-        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<font color="blue">前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。</font>       
+        
+          
+          显示隐藏文件夹显示1defaults write com.apple.finder AppleShowAllFiles -bool true;KillAll Finder
+如果想要再隐藏可以将上面的 true 改为 false
+未完待续。。。
 
-<p>神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。       </p>
-<p>但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我们只需要找到我们所处位置的梯度，沿着梯度反方向就能找到最快下山的路线。假设我们站在\((x_0\,,y_0)\)的位置，则该位置的梯度为\((\left. \frac{\partial f}{\partial x} \right|_{x=x_0,y=y_0},\left. \frac{\partial f}{\partial y} \right|_{x=x_0,y=y_0})\)，那么下一刻你需要调整的位置为\((x_0-\left. \frac{\partial f}{\partial x} \right|_{x=x_0,y=y_0},y_0-\left. \frac{\partial f}{\partial y} \right|_{x=x_0,y=y_0})\)。这种方法叫梯度下降法，通过使用这种方法来调整权值和偏置，使代价函数降到最小。       </p>
-<p><img src="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png" alt="图片还没出来么？" title="图一"><br>上图是一个三层的神经网络模型，第一层为输入层，第二层为隐含层，第三层为输出层。其中\(\,w_{jk}^l\,\)表示第\(\,l\,\)层第\(\,j\,\)个神经元与第\(\,l-1\,\)层第\(\,k\,\)个神经元之间的权值。         </p>
-<p><img src="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png" alt="图片还没出来么？" title="图二"><br>图二中\(\,a_j^l\,\)表示第\(\,l\,\)层第\(\,j\,\)个神经元的输出值，\(\,b_k^l\,\)表示第\(\,l\,\)层第\(\,k\,\)个神经元的偏置。设代价函数为\(C_0\)，则有如下公式：<br>$$<br>\begin{align}<br>C_0&amp;=\sum_{j=0}^{n_l-1}(a_j^l-y_j)^2\\<br>a_j^l&amp;=\sigma(z_j^l)\\<br>z_j^l&amp;=\sum_{k=0}^{n_k-1}a_k^{l-1}w_{jk}^l+b_j^l<br>\end{align}<br>$$<br>如果此时神经网络中的权值为\((w_0,w_1…w_m)\)，那么我们需要找到代价函数\(\,C_0\,\)相对于此刻权值的梯度\((\frac{\partial C_0}{\partial w_0},\frac{\partial C_0}{\partial w_1}…\frac{\partial C_0}{\partial w_m})\)。根据链式法则，有<br>$$<br>\frac{\partial C_0}{\partial w_{jk}^l}=\frac{\partial C_0}{\partial a_j^l}\frac{\partial a_j^l}{\partial z_j^l}\frac{\partial z_j^l}{\partial w_{jk}^l}<br>$$<br>其中<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial a_j^l}&amp;=2(a_j^l-y_j)\\<br>\frac{\partial a_j^l}{\partial z_j^l}&amp;=\sigma’(z_j^l)\\<br>\frac{\partial z_j^l}{\partial w_{jk}^l}&amp;=a_k^{l-1}<br>\end{align}<br>$$<br>所以<br>$$<br>\frac{\partial C_0}{\partial w_{jk}^l}=2(a_j^l-y_j)\sigma’(z_j^l)a_k^{l-1}<br>$$<br>同理<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial b_j^l}&amp;=2(a_j^l-y_j)\sigma’(z_j^l)\\<br>\frac{\partial C_0}{\partial a_j^{l-1}}&amp;=2(a_j^l-y_j)\sigma’(z_j^l)w_{jk}^l<br>\end{align}<br>$$<br>但是对于\(\frac{\partial C_0}{\partial a_j^{l-1}}\)，由于\(a_j^{l-1}\)的变化会影响到\(\,l\,\)层所有输出值，则<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial a_j^{l-1}}&amp;=\sum_{j=0}^{n_l-1}\frac{\partial C_0}{\partial a_j^l}\frac{\partial a_j^l}{\partial z_j^l}\frac{\partial z_j^l}{\partial a_{k}^{l-1}}\\<br>\frac{\partial C_0}{\partial a_j^{l-1}}&amp;=\sum_{j=0}^{n_l-1}2(a_j^l-y_j)\sigma’(z_j^l)w_{jk}^l<br>\end{align}<br>$$<br>之前说过，神经网络的训练过程就是通过调整权值和偏置的值来使代价函数降到最小，那么此处求代价函数对于\(\,l-1\,\)层输出值的偏导有何意义？因为我们在求\(\frac{\partial C_0}{\partial w_{jk}^{l-1}}\)需要用到这个值。<br>$$<br>\begin{align}<br>\frac{\partial C_0}{\partial w_{jk}^{l-1}}&amp;=\frac{\partial C_0}{\partial a_j^{l-1}}\frac{\partial a_j^{l-1}}{\partial z_j^{l-1}}\frac{\partial z_j^{l-1}}{\partial w_{jk}^{l-1}}\\<br>&amp;=\sum_{j=0}^{n_l-1}2(a_j^l-y_j)\sigma’(z_j^l)w_{jk}^l \cdot \sigma’(z_j^{l-1})w_{jk}^{l-1}<br>\end{align}<br>$$<br>无论神经网络有多少层，都可以如此类推。到此，误差在各个层之间的传递以及各层间权值的调整已经很清楚了。     </p>
-<p>以上的代价函数和\(\,\sigma\,\)函数可根据需求选取。     </p>
-<font color="blue">后记：让我着迷至今的神经网络到此先告一段。</font>
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/31/Mac-os-常用命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
       
     </div>
     
@@ -399,32 +381,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/05/15/记一次Python在实际工作中的使用/" rel="next" title="记一次Python在实际工作中的使用">
-                <i class="fa fa-chevron-left"></i> 记一次Python在实际工作中的使用
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/29/关于《逃避自由》/" rel="prev" title="关于《逃避自由》">
-                关于《逃避自由》 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -434,11 +396,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+  </nav>
+
 
 
           </div>
@@ -686,10 +651,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
