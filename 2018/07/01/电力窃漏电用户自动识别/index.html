@@ -82,7 +82,7 @@
 <meta name="description" content="前言：这是一次很简单的实战，因为模型已经建好了，只剩下数据分析。          背景实战的项目是建立一个数据分析模型，来自动识别窃漏电用户。该模型以电力系统采集到的用户的各相电流、电压、功率因数等用电负荷数据以及用电异常等终端报警信息为基础数据，同时给出窃漏电用户和正常用户，利用那些基础数据提取窃漏电用户的关键特征，从而构建出窃漏电用户的识别模型。       原始资料原始资料包括：1.三个用">
 <meta name="keywords" content="数据分析">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据分析实战--1.1">
+<meta property="og:title" content="电力窃漏电用户自动识别">
 <meta property="og:url" content="http://yoursite.com/2018/07/01/电力窃漏电用户自动识别/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
 <meta property="og:description" content="前言：这是一次很简单的实战，因为模型已经建好了，只剩下数据分析。          背景实战的项目是建立一个数据分析模型，来自动识别窃漏电用户。该模型以电力系统采集到的用户的各相电流、电压、功率因数等用电负荷数据以及用电异常等终端报警信息为基础数据，同时给出窃漏电用户和正常用户，利用那些基础数据提取窃漏电用户的关键特征，从而构建出窃漏电用户的识别模型。       原始资料原始资料包括：1.三个用">
@@ -93,9 +93,9 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/07/01/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98-1-1/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E5%9C%A8%E6%B5%8B%E8%AF%95%E6%A0%B7%E6%9C%AC%E4%B8%8B%E7%9A%84ROC%E6%9B%B2%E7%BA%BF3.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/07/01/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98-1-1/%E5%86%B3%E7%AD%96%E6%A0%91/CART%E5%86%B3%E7%AD%96%E6%A0%91%E7%9A%84%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/07/01/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98-1-1/%E5%86%B3%E7%AD%96%E6%A0%91/CART%E5%86%B3%E7%AD%96%E6%A0%91%E5%9C%A8%E6%B5%8B%E8%AF%95%E6%A0%B7%E6%9C%AC%E4%B8%8B%E7%9A%84ROC%E6%9B%B2%E7%BA%BF.png">
-<meta property="og:updated_time" content="2018-07-01T08:52:24.008Z">
+<meta property="og:updated_time" content="2018-08-09T07:51:23.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数据分析实战--1.1">
+<meta name="twitter:title" content="电力窃漏电用户自动识别">
 <meta name="twitter:description" content="前言：这是一次很简单的实战，因为模型已经建好了，只剩下数据分析。          背景实战的项目是建立一个数据分析模型，来自动识别窃漏电用户。该模型以电力系统采集到的用户的各相电流、电压、功率因数等用电负荷数据以及用电异常等终端报警信息为基础数据，同时给出窃漏电用户和正常用户，利用那些基础数据提取窃漏电用户的关键特征，从而构建出窃漏电用户的识别模型。       原始资料原始资料包括：1.三个用">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/07/01/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E5%AE%9E%E6%88%98-1-1/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%B7%B7%E6%B7%86%E7%9F%A9%E9%98%B5.png">
 
@@ -133,7 +133,7 @@
 
 
 
-  <title>数据分析实战--1.1 | 冻硬的苹果</title>
+  <title>电力窃漏电用户自动识别 | 冻硬的苹果</title>
   
 
 
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">数据分析实战--1.1</h1>
+          <h1 class="post-title" itemprop="name headline">电力窃漏电用户自动识别</h1>
         
 
         <div class="post-meta">
@@ -348,7 +348,7 @@
 
           
           
-             <span id="/2018/07/01/电力窃漏电用户自动识别/" class="leancloud_visitors" data-flag-title="数据分析实战--1.1">
+             <span id="/2018/07/01/电力窃漏电用户自动识别/" class="leancloud_visitors" data-flag-title="电力窃漏电用户自动识别">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -439,8 +439,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/10/电力窃漏电用户自动识别-拓展思考/" rel="prev" title="数据分析实战--1.2">
-                数据分析实战--1.2 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/07/10/电力窃漏电用户自动识别-拓展思考/" rel="prev" title="电力窃漏电用户自动识别-拓展思考">
+                电力窃漏电用户自动识别-拓展思考 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
