@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据分析," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景癌症已成为危害国民生命健康的主要杀手之一，中医在治疗癌症方面有着独特的优势。从整体出发，调整机理气血、阴阳、脏腑功能的平衡，根据不同的临床症候进行辩证论治。确定“先证而治”的方向：即后续症候尚未出现之前，需要截断恶化病情的哪些后续症候。发现中医症状之间的关联关系和诸多症状间的规律性，并依据规则分析病因、预测病情发展以及为未来临床诊治提供有效借鉴。原始资料1.各证型系数表实战目的1.对原始数据按">
+<meta name="keywords" content="数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中医证型关联规则挖掘">
+<meta property="og:url" content="http://yoursite.com/2018/08/16/中医证型关联规则挖掘/index.html">
+<meta property="og:site_name" content="冻硬的苹果">
+<meta property="og:description" content="背景癌症已成为危害国民生命健康的主要杀手之一，中医在治疗癌症方面有着独特的优势。从整体出发，调整机理气血、阴阳、脏腑功能的平衡，根据不同的临床症候进行辩证论治。确定“先证而治”的方向：即后续症候尚未出现之前，需要截断恶化病情的哪些后续症候。发现中医症状之间的关联关系和诸多症状间的规律性，并依据规则分析病因、预测病情发展以及为未来临床诊治提供有效借鉴。原始资料1.各证型系数表实战目的1.对原始数据按">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/08/16/中医证型关联规则挖掘/%27属性构造后的数据集%27">
+<meta property="og:image" content="http://yoursite.com/2018/08/16/中医证型关联规则挖掘/%27建模数据%27">
+<meta property="og:updated_time" content="2018-08-16T02:43:18.113Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中医证型关联规则挖掘">
+<meta name="twitter:description" content="背景癌症已成为危害国民生命健康的主要杀手之一，中医在治疗癌症方面有着独特的优势。从整体出发，调整机理气血、阴阳、脏腑功能的平衡，根据不同的临床症候进行辩证论治。确定“先证而治”的方向：即后续症候尚未出现之前，需要截断恶化病情的哪些后续症候。发现中医症状之间的关联关系和诸多症状间的规律性，并依据规则分析病因、预测病情发展以及为未来临床诊治提供有效借鉴。原始资料1.各证型系数表实战目的1.对原始数据按">
+<meta name="twitter:image" content="http://yoursite.com/2018/08/16/中医证型关联规则挖掘/%27属性构造后的数据集%27">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/16/中医证型关联规则挖掘/"/>
+
+
+
+
+
+  <title>中医证型关联规则挖掘 | 冻硬的苹果</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?608723899f726bbda4571e2884b98a54";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冻硬的苹果</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/16/中医证型关联规则挖掘/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冻硬的苹果">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冻硬的苹果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">中医证型关联规则挖掘</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-16T08:45:40+08:00">
+                2018-08-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+             <span id="/2018/08/16/中医证型关联规则挖掘/" class="leancloud_visitors" data-flag-title="中医证型关联规则挖掘">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <font size="3"><strong>背景</strong></font><br>癌症已成为危害国民生命健康的主要杀手之一，中医在治疗癌症方面有着独特的优势。从整体出发，调整机理气血、阴阳、脏腑功能的平衡，根据不同的临床症候进行辩证论治。确定“先证而治”的方向：即后续症候尚未出现之前，需要截断恶化病情的哪些后续症候。发现中医症状之间的关联关系和诸多症状间的规律性，并依据规则分析病因、预测病情发展以及为未来临床诊治提供有效借鉴。<br><br><font size="3"><strong>原始资料</strong></font><br>1.各证型系数表<br><br><font size="3"><strong>实战目的</strong></font><br>1.对原始数据按照要求进行预处理。<br>2.借助乳腺癌患者的病理信息，挖掘患者的症状与中医证型之间的关联关系。<br><br><font size="3"><strong>分析方法与过程</strong></font>      
+
+<p><strong>1.数据的获取</strong><br>本案例通过问卷调查的方式获得数据，收集到的数据共有73个属性，为了更有效地对其进行挖掘，将其中的冗余属性与挖掘任务不相关属性剔除。只保留6种证型得分、TNM分期的属性值构成的数据集。     </p>
+<p><strong>2.数据变换</strong><br>1.属性构造<br>原数据是以得分的形式呈现各属性值，为了更好地反映中医证素分布的特征，采用证型系数代替具体得分，证型相关系数计算公式为：证型系数=该证型得分/该证型总分。<br>属性构造后的结果如下表：<br><img src="&#39;属性构造后的数据集&#39;" alt="这里是图片"><br>2.数据离散化<br>由于Apriori关联规则算法无法处理连续型数值变量，需要对数据进行离散化。采用聚类算法对各证型系数进行离散化处理，将每个属性聚成4类。离散化后结果如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">                  <span class="number">0</span>        <span class="number">2</span>       <span class="number">3</span>       <span class="number">1</span></span><br><span class="line">聚类个数        <span class="number">240.000</span>  <span class="number">356.000</span>  <span class="number">281.00</span>  <span class="number">53.000</span></span><br><span class="line">肝气郁结证型系数范围    <span class="number">0.178</span>    <span class="number">0.257</span>    <span class="number">0.35</span>   <span class="number">0.504</span></span><br><span class="line">                  <span class="number">2</span>        <span class="number">0</span>        <span class="number">1</span>      <span class="number">3</span></span><br><span class="line">聚类个数        <span class="number">316.000</span>  <span class="number">391.000</span>  <span class="number">169.000</span>  <span class="number">54.00</span></span><br><span class="line">热毒蕴结证型系数范围    <span class="number">0.147</span>    <span class="number">0.284</span>    <span class="number">0.449</span>   <span class="number">0.78</span></span><br><span class="line">                  <span class="number">0</span>        <span class="number">2</span>        <span class="number">1</span>      <span class="number">3</span></span><br><span class="line">聚类个数        <span class="number">297.000</span>  <span class="number">394.000</span>  <span class="number">204.000</span>  <span class="number">35.00</span></span><br><span class="line">冲任失调证型系数范围    <span class="number">0.202</span>    <span class="number">0.289</span>    <span class="number">0.415</span>   <span class="number">0.61</span></span><br><span class="line">                  <span class="number">0</span>        <span class="number">1</span>        <span class="number">3</span>       <span class="number">2</span></span><br><span class="line">聚类个数        <span class="number">309.000</span>  <span class="number">371.000</span>  <span class="number">212.000</span>  <span class="number">38.000</span></span><br><span class="line">气血两虚证型系数范围    <span class="number">0.176</span>    <span class="number">0.257</span>    <span class="number">0.367</span>   <span class="number">0.552</span></span><br><span class="line">                  <span class="number">2</span>        <span class="number">1</span>        <span class="number">0</span>       <span class="number">3</span></span><br><span class="line">聚类个数        <span class="number">273.000</span>  <span class="number">319.000</span>  <span class="number">244.000</span>  <span class="number">94.000</span></span><br><span class="line">脾胃虚弱证型系数范围    <span class="number">0.152</span>    <span class="number">0.256</span>    <span class="number">0.375</span>   <span class="number">0.526</span></span><br><span class="line">                  <span class="number">1</span>        <span class="number">3</span>        <span class="number">2</span>        <span class="number">0</span></span><br><span class="line">聚类个数        <span class="number">200.000</span>  <span class="number">237.000</span>  <span class="number">265.000</span>  <span class="number">228.000</span></span><br><span class="line">肝肾阴虚证型系数范围    <span class="number">0.178</span>    <span class="number">0.261</span>    <span class="number">0.353</span>    <span class="number">0.607</span></span><br></pre></td></tr></table></figure><br>离散表如下：<br>肝气郁结证型离散表<br>| 范围标识 | A1 | A2 | A3 | A4 |<br>|:——: |:–:|:–:|:–:|:–:|<br>|肝气郁结证型系数范围|(0, 0.178]|(0.178, 0.257]|(0.257, 0.35]|(0.35, 0.504]|<br>|范围内元素个数|240|356|281|53|<br>其他证型离散化表同上，就不再一一展示了。用离散化后的范围标识代替原来的系数，形成建模数据，具体的代码如下。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># _*_ coding: utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">datafile = <span class="string">'/Users/Mac/Desktop/data.xls'</span></span><br><span class="line">dataframe_all = pd.read_excel(datafile)</span><br><span class="line">dataframe = dataframe_all.iloc[:, <span class="number">0</span>:<span class="number">6</span>]</span><br><span class="line"></span><br><span class="line">k = <span class="number">4</span></span><br><span class="line">iteration = <span class="number">500</span></span><br><span class="line">pre = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">6</span>):</span><br><span class="line">    <span class="keyword">from</span> sklearn.cluster <span class="keyword">import</span> KMeans</span><br><span class="line"></span><br><span class="line">    data = dataframe.iloc[:,i]</span><br><span class="line">    model = KMeans(n_clusters=k, n_jobs=<span class="number">2</span>, max_iter=iteration)</span><br><span class="line">    model.fit(data.values.reshape(<span class="number">-1</span>, <span class="number">1</span>))</span><br><span class="line">    r1 = pd.Series(model.labels_)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    data2 = pd.concat([data, r1], axis = <span class="number">1</span>)</span><br><span class="line">    data2.columns = [<span class="string">'系数'</span>,dataframe.columns[i]]</span><br><span class="line">    r2 = data2.groupby(dataframe.columns[i]).max().sort_values(by=<span class="string">'系数'</span>)[<span class="string">'系数'</span>]</span><br><span class="line">    r3 = pd.Series(model.labels_).value_counts()</span><br><span class="line">    r = pd.concat([r3, r2], axis=<span class="number">1</span>)</span><br><span class="line">    r.columns = [<span class="string">'聚类个数'</span>, dataframe.columns[i]+<span class="string">'范围'</span>]</span><br><span class="line">    r.sort_values(by=r.columns[<span class="number">1</span>], inplace = <span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">    print(r.T)</span><br><span class="line"></span><br><span class="line">    range_symbol = [<span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(r)):</span><br><span class="line">        data2[dataframe.columns[i]].replace(list(r.index)[j], <span class="string">'%s%s'</span>%(range_symbol[i],j+<span class="number">1</span>), inplace = <span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># print(data2)</span></span><br><span class="line"></span><br><span class="line">    pre.append(data2.iloc[:,<span class="number">1</span>])</span><br><span class="line"></span><br><span class="line">pre.append(dataframe_all.iloc[:, <span class="number">7</span>])</span><br><span class="line">pre_data = pd.concat(pre, axis=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">pre_data.to_excel(<span class="string">'/Users/Mac/Desktop/pre_data.xls'</span>)</span><br></pre></td></tr></table></figure><br>建模数据如下表：<br><img src="&#39;建模数据&#39;" alt="">     </p>
+<p><font size="3"><strong>模型构建</strong></font><br><strong>1.寻找关联规则</strong><br>本案例的目标是寻找乳腺癌患者TNM分期与中医证型系数之间的关系，采用的是Apriori算法。此次实战采用两种Apriori程序，一种是<a href="https://book.douban.com/subject/26677686/" target="_blank" rel="noopener">Python数据分析与挖掘实战</a>书上的程序，另外一种是我的博文<a href="http://www.dydpg.com/2018/06/17/%E5%85%B3%E8%81%94%E8%A7%84%E5%88%99/#more" target="_blank" rel="noopener">关联规则</a>中的程序。<br>前一种的结果如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">转换数据☞<span class="number">0</span><span class="number">-1</span>矩阵</span><br><span class="line"></span><br><span class="line">转换完毕，用时：<span class="number">0.75</span>秒</span><br><span class="line"></span><br><span class="line">开始搜索关联规则。。。</span><br><span class="line"></span><br><span class="line">正在进行第<span class="number">1</span>次搜索...</span><br><span class="line">数目：<span class="number">276.</span>..</span><br><span class="line"></span><br><span class="line">正在进行第<span class="number">2</span>次搜索...</span><br><span class="line">数目：<span class="number">949.</span>..</span><br><span class="line"></span><br><span class="line">正在进行第<span class="number">3</span>次搜索...</span><br><span class="line">数目：<span class="number">40.</span>..</span><br><span class="line"></span><br><span class="line">结果为：</span><br><span class="line">                   support  confidence</span><br><span class="line">A3----&gt;F4----&gt;H4  0.079570    0.880952</span><br><span class="line">C3----&gt;F4----&gt;H4  0.075269    0.875000</span><br><span class="line">B2----&gt;F4----&gt;H4  0.062366    0.794521</span><br><span class="line"></span><br><span class="line">搜索完成，用时：<span class="number">3.33</span>秒</span><br></pre></td></tr></table></figure><br>后一种结果如下：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">['C3', 'F4'] ----&gt; ['H4'] 置信度：0.875 支持度：0.075</span><br><span class="line">['A3', 'F4'] ----&gt; ['H4'] 置信度：0.881 支持度：0.080</span><br><span class="line">['B2', 'F4'] ----&gt; ['H4'] 置信度：0.795 支持度：0.062</span><br></pre></td></tr></table></figure><br><strong>2.结果分析</strong><br>A3表示肝气郁结证型系数在(0.257, 0.35]范围内，C3表示冲任失调证型系数在(0.289, 0.415]范围内，B2表示热毒蕴结证型系数在(0.147, 0.284]范围内，F4表示肝肾阴虚证型系数在(0.353, 0.607]范围内。因此我们可以这样认为，当患者的肝气郁结证型系数在(0.257, 0.35]范围，同时肝肾阴虚证型系数在(0.353, 0.607]范围时，<br>书中从医学角度对模型结果分析，符合中医学原理，此处不再赘述。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/07/航空公司客户价值分析/" rel="next" title="航空公司客户价值分析">
+                <i class="fa fa-chevron-left"></i> 航空公司客户价值分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="冻硬的苹果" />
+            
+              <p class="site-author-name" itemprop="name">冻硬的苹果</p>
+              <p class="site-description motion-element" itemprop="description">企者不立 跨者不行</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冻硬的苹果</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz',
+        appKey: 'dQHka3SAsHH77kdTFfwMPx6U',
+        placeholder: '欢迎交流',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz", "dQHka3SAsHH77kdTFfwMPx6U");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
