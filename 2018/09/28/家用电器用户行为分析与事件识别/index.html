@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据分析," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景某热水器生产商研发一种高端智能热水器，在状态发生改变或者有水流状态时，会采集各监控指标数据。该厂商根据采集的用户用水数据，分析用户的用水行为特征，根据这些特征识别出洗浴事件，建立洗浴事件识别模型。     热水器厂商根据洗浴事件识别模型，对不同地区的用户的用水进行识别，根据识别结果比较不同用户群的客户使用习惯、加深对客户的理解等。从而，厂商可以给不同的客户群提供最适合的个性化产品、改进新产品">
+<meta name="keywords" content="数据分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="家用电器用户行为分析与事件识别">
+<meta property="og:url" content="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/index.html">
+<meta property="og:site_name" content="冻硬的苹果">
+<meta property="og:description" content="背景某热水器生产商研发一种高端智能热水器，在状态发生改变或者有水流状态时，会采集各监控指标数据。该厂商根据采集的用户用水数据，分析用户的用水行为特征，根据这些特征识别出洗浴事件，建立洗浴事件识别模型。     热水器厂商根据洗浴事件识别模型，对不同地区的用户的用水进行识别，根据识别结果比较不同用户群的客户使用习惯、加深对客户的理解等。从而，厂商可以给不同的客户群提供最适合的个性化产品、改进新产品">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/%27阈值和事件关系%27">
+<meta property="og:image" content="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/%27建模样本数据示例%27">
+<meta property="og:image" content="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/%27神经网络模型测试结果%27">
+<meta property="og:image" content="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/%27支持向量机测试结果%27">
+<meta property="og:updated_time" content="2018-09-28T08:59:38.536Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="家用电器用户行为分析与事件识别">
+<meta name="twitter:description" content="背景某热水器生产商研发一种高端智能热水器，在状态发生改变或者有水流状态时，会采集各监控指标数据。该厂商根据采集的用户用水数据，分析用户的用水行为特征，根据这些特征识别出洗浴事件，建立洗浴事件识别模型。     热水器厂商根据洗浴事件识别模型，对不同地区的用户的用水进行识别，根据识别结果比较不同用户群的客户使用习惯、加深对客户的理解等。从而，厂商可以给不同的客户群提供最适合的个性化产品、改进新产品">
+<meta name="twitter:image" content="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/%27阈值和事件关系%27">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/"/>
+
+
+
+
+
+  <title>家用电器用户行为分析与事件识别 | 冻硬的苹果</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?608723899f726bbda4571e2884b98a54";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冻硬的苹果</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/家用电器用户行为分析与事件识别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冻硬的苹果">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冻硬的苹果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">家用电器用户行为分析与事件识别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T09:00:06+08:00">
+                2018-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+             <span id="/2018/09/28/家用电器用户行为分析与事件识别/" class="leancloud_visitors" data-flag-title="家用电器用户行为分析与事件识别">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
+<p><font size="3"><strong>背景</strong></font><br>某热水器生产商研发一种高端智能热水器，在状态发生改变或者有水流状态时，会采集各监控指标数据。该厂商根据采集的用户用水数据，分析用户的用水行为特征，根据这些特征识别出洗浴事件，建立洗浴事件识别模型。    </p>
+<p>热水器厂商根据洗浴事件识别模型，对不同地区的用户的用水进行识别，根据识别结果比较不同用户群的客户使用习惯、加深对客户的理解等。从而，厂商可以给不同的客户群提供最适合的个性化产品、改进新产品的智能化的研发和定制相应的营销策略。      </p>
+<p><font size="3"><strong>目标</strong></font><br>（1）根据热水器采集的数据，划分一次完整的用水事件。<br>（2）在划分好的用水事件中，识别出洗浴事件。      </p>
+<p><font size="3"><strong>数据</strong></font><br>（1）原始数据，即热水器采集的最原初的数据，包括热水器编码、发生时间、开关机状态、热水量等12个属性。<br>（2）建模数据，属性构造后的数据，包括时长指标、频率指标等专家属性。        </p>
+<p><font size="3"><strong>数据预处理</strong></font><br><strong>1.数据规约</strong><br>包括属性规约和数值规约，将对建模没用的属性和数值删去，如属性中的热水器编码，及关机状态且水流量为0的数据。    </p>
+<p><strong>2.数据变换</strong><br>该部分主要是对完整的用水事件进行划分，主要思想是寻找一个最优阈值，时间间隔大于该阈值的被认为是两次事件，小于该阈值的被认为是一次事件，尽可能避免一次事件被拆分或者两次事件被合并。     </p>
+<p>通过设置一系列阈值，观察事件被划分的个数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/water_heater.xls'</span>)</span><br><span class="line">data[<span class="string">'发生时间'</span>] = pd.to_datetime(data[<span class="string">'发生时间'</span>], format = <span class="string">'%Y%m%d%H%M%S'</span>)</span><br><span class="line">data = data[data[<span class="string">'水流量'</span>] &gt; <span class="number">0</span>]</span><br><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">6</span>), dpi=<span class="number">120</span>)</span><br><span class="line">mlist = []</span><br><span class="line">tlist = np.arange(<span class="number">1</span>,<span class="number">10</span>,<span class="number">0.25</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tlist:</span><br><span class="line">    threshold = pd.Timedelta(minutes = i)</span><br><span class="line">    d = data[<span class="string">'发生时间'</span>].diff() &gt; threshold</span><br><span class="line">    m = (d.cumsum()+<span class="number">1</span>).max()</span><br><span class="line">    mlist.append(m)</span><br><span class="line">    plt.scatter([i], [m], <span class="number">10</span>, color=<span class="string">'red'</span>)</span><br><span class="line">plt.plot(tlist, mlist, color=<span class="string">'red'</span>, linewidth=<span class="number">1.0</span>, linestyle=<span class="string">'-'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure><br>结果如下图：<br><img src="&#39;阈值和事件关系&#39;" alt="图片"><br>在4分钟左右时图像在一定范围内趋于平缓，也就意味着在这段时间范围内，时间间隔增加事件个数几乎不会变化，但是超过大约5分钟后，时间个数突变，说明4分钟的时间间隔可能是划分两个事件的时间间隔。为了寻找确切的时间间隔，我们需要再构造一个斜率指标。      </p>
+<p>我们定义A点的斜率指标为：<br>$$<br>K = \frac{(k_{AB}+k_{BC}+k_{CD}+k_{DE})}{4}<br>$$<br>其中\(\,k_{ij}\,\)表示i，j两点的斜率，且ABCDE五个点为连续的五个点。   </p>
+<p>寻找最优阈值过程如下：<br>当存在一个阈值的斜率指标K&lt;1时，取与之最小点的横坐标作为最优阈值，其中K&lt;1中的1是经过实际数据验证的专家阈值。<br>如果所有的阈值的斜率指标1&lt;K&lt;5，则找斜率指标最小的阈值作为最优阈值，其中5同样是个专家阈值。<br>如果所有的阈值的斜率指标K&gt;5，则最优阈值为4。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/water_heater.xls'</span>)</span><br><span class="line">data[<span class="string">'发生时间'</span>] = pd.to_datetime(data[<span class="string">'发生时间'</span>], format = <span class="string">'%Y%m%d%H%M%S'</span>)</span><br><span class="line">data = data[data[<span class="string">'水流量'</span>] &gt; <span class="number">0</span>]</span><br><span class="line">mlist = []</span><br><span class="line">tlist = np.arange(<span class="number">1</span>,<span class="number">10</span>,<span class="number">0.25</span>)</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tlist:</span><br><span class="line">    threshold = pd.Timedelta(minutes = i)</span><br><span class="line">    d = data[<span class="string">'发生时间'</span>].diff() &gt; threshold</span><br><span class="line">    m = (d.cumsum()+<span class="number">1</span>).max()</span><br><span class="line">    mlist.append(m)</span><br><span class="line">    </span><br><span class="line">K = <span class="number">100</span></span><br><span class="line">th = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> range(len(mlist)<span class="number">-4</span>):</span><br><span class="line">    k=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> h <span class="keyword">in</span> range(<span class="number">4</span>):</span><br><span class="line">        k += abs((mlist[j+h]-mlist[j+h+<span class="number">1</span>])/(tlist[j+h]-tlist[j+h+<span class="number">1</span>]))</span><br><span class="line">    K1 = k/<span class="number">4</span></span><br><span class="line">    <span class="keyword">if</span> K1 &lt; K:</span><br><span class="line">        K = K1</span><br><span class="line">        th = tlist[j]</span><br><span class="line">    <span class="comment">#print(K, th)</span></span><br><span class="line"><span class="keyword">if</span> K &gt;= <span class="number">5</span>:</span><br><span class="line">    th = <span class="number">4</span></span><br><span class="line">print(th)</span><br></pre></td></tr></table></figure><br>结果最优阈值为4分钟。     </p>
+<p>该部分还包括属性构造，主要有时长指标、频率指标、用水量化指标和水的波动指标。略去了。最终的数据如下图：<br><img src="&#39;建模样本数据示例&#39;" alt="这里是图片">      </p>
+<p><font size="3"><strong>模型构建</strong></font><br>分别用神经网络和支持向量机构建模型，其中训练神经网络模型的代码如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># _*_ coding: utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">train_filename = <span class="string">'/Users/Mac/Desktop/train_neural_network_data.xls'</span></span><br><span class="line">test_filename = <span class="string">'/Users/Mac/Desktop/test_neural_network_data.xls'</span></span><br><span class="line">train_data = pd.read_excel(train_filename)</span><br><span class="line">test_data = pd.read_excel(test_filename)</span><br><span class="line">y_train_data = train_data.iloc[:, <span class="number">4</span>].as_matrix()</span><br><span class="line">x_train_data = train_data.iloc[:, <span class="number">5</span>:<span class="number">16</span>].as_matrix()</span><br><span class="line">y_test_data = test_data.iloc[:, <span class="number">4</span>].as_matrix()</span><br><span class="line">x_test_data = test_data.iloc[:, <span class="number">5</span>:<span class="number">16</span>].as_matrix()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Sequential</span><br><span class="line"><span class="keyword">from</span> keras.layers.core <span class="keyword">import</span> Dense, Activation</span><br><span class="line"></span><br><span class="line">model = Sequential()</span><br><span class="line">model.add(Dense(units=<span class="number">17</span>, input_dim=<span class="number">11</span>))</span><br><span class="line">model.add(Activation(<span class="string">'relu'</span>))</span><br><span class="line">model.add(Dense(units=<span class="number">10</span>))</span><br><span class="line">model.add(Activation(<span class="string">'relu'</span>))</span><br><span class="line">model.add(Dense(units=<span class="number">1</span>))</span><br><span class="line">model.add(Activation(<span class="string">'sigmoid'</span>))</span><br><span class="line"></span><br><span class="line">model.compile(loss=<span class="string">'binary_crossentropy'</span>, optimizer=<span class="string">'adam'</span>, metrics=[<span class="string">'accuracy'</span>])</span><br><span class="line">model.fit(x_train_data, y_train_data, nb_epoch=<span class="number">150</span>, batch_size=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">y_pre = model.predict_classes(x_test_data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> cm_plot <span class="keyword">import</span> *</span><br><span class="line">cm_plot(y_test_data, y_pre).show()</span><br></pre></td></tr></table></figure><br>神经网络模型测试结果如下图：<br><img src="&#39;神经网络模型测试结果&#39;" alt="这里是图片"><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># !/usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># _*_ coding: utf-8 _*_</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">train_filename = <span class="string">'/Users/Mac/Desktop/train_neural_network_data.xls'</span></span><br><span class="line">test_filename = <span class="string">'/Users/Mac/Desktop/test_neural_network_data.xls'</span></span><br><span class="line">train_data = pd.read_excel(train_filename)</span><br><span class="line">test_data = pd.read_excel(test_filename)</span><br><span class="line">y_train_data = train_data.iloc[:, <span class="number">4</span>].as_matrix()</span><br><span class="line">x_train_data = train_data.iloc[:, <span class="number">5</span>:<span class="number">16</span>].as_matrix()</span><br><span class="line">y_test_data = test_data.iloc[:, <span class="number">4</span>].as_matrix()</span><br><span class="line">x_test_data = test_data.iloc[:, <span class="number">5</span>:<span class="number">16</span>].as_matrix()</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</span><br><span class="line">model = svm.SVC()</span><br><span class="line">model.fit(x_train_data, y_train_data)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> cm_plot <span class="keyword">import</span> *</span><br><span class="line">cm_plot(y_test_data, model.predict(x_test_data)).show()</span><br></pre></td></tr></table></figure><br><img src="&#39;支持向量机测试结果&#39;" alt="这里是图片"><br>从结果看，支持向量机和神经网络对测试样本的识别准确度是一样的。但神经网络在参数不变的情况下会出现不同结果，通过改变batch_size也可以获得不同的结果，当batch_size=1时所获得的结果似乎是最好的了。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/21/井/" rel="next" title="井">
+                <i class="fa fa-chevron-left"></i> 井
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="冻硬的苹果" />
+            
+              <p class="site-author-name" itemprop="name">冻硬的苹果</p>
+              <p class="site-description motion-element" itemprop="description">企者不立 跨者不行</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冻硬的苹果</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+本站总访问量 <span id="busuanzi_value_site_pv"></span> 次&nbsp&nbsp&nbsp
+本站访客数<span id="busuanzi_value_site_uv"></span>人次
+</div>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz',
+        appKey: 'dQHka3SAsHH77kdTFfwMPx6U',
+        placeholder: '欢迎交流',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz", "dQHka3SAsHH77kdTFfwMPx6U");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
