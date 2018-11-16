@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="命名约定        1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。  2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。 123456789101112131415161718class Student():        def __init__(self, name, score):        s">
+<meta name="description" content="命名约定          1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。   2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。123456789101112131415161718class Student():        def __init__(self, name, score):">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python中的命名规则">
 <meta property="og:url" content="http://yoursite.com/2018/11/16/Python中的命名规则/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="命名约定        1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。  2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。 123456789101112131415161718class Student():        def __init__(self, name, score):        s">
+<meta property="og:description" content="命名约定          1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。   2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。123456789101112131415161718class Student():        def __init__(self, name, score):">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-16T12:45:59.673Z">
+<meta property="og:updated_time" content="2018-11-16T13:02:07.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python中的命名规则">
-<meta name="twitter:description" content="命名约定        1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。  2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。 123456789101112131415161718class Student():        def __init__(self, name, score):        s">
+<meta name="twitter:description" content="命名约定          1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。   2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。123456789101112131415161718class Student():        def __init__(self, name, score):">
 
 
 
@@ -373,19 +373,15 @@
       
         <font size="3"><strong>命名约定</strong></font>      
 
-<pre><code>1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。
+<p>  1.用单下划线( _ )开头的表示模块变量或函数是被保护的（即使用 import * from 时不会包含）。</p>
+<p>  2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.__name = name</span><br><span class="line">        self.__score = score</span><br><span class="line">student1 = Student(<span class="string">'zhang'</span>, <span class="number">80</span>)</span><br><span class="line">student1.__name</span><br><span class="line"><span class="comment"># 结果会报错</span></span><br><span class="line">AttributeError                            Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-5</span><span class="number">-6e36959</span>d00c5&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">      <span class="number">5</span>         self.__score = score</span><br><span class="line">      <span class="number">6</span> student1 = Student(<span class="string">'zhang'</span>, <span class="number">80</span>)</span><br><span class="line">----&gt; 7 student1.__name</span><br><span class="line"></span><br><span class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'__name'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>  3.对类名使用大写字母开头的单词（如CapWorld），模块名应该用小写加下划线的方式（如lower_with_under.py）。普通变量用小写字母加下划线方式，全局变量使用大写字母加下划线（如SOME_VARIABLE）。</p>
+<font size="3"><strong>应该避免</strong></font>     
 
-2.用双下划线( __ )开头的实例变量或方法表示类内私有，从外部无法获取。
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, name, score)</span>:</span></span><br><span class="line">        self.__name = name</span><br><span class="line">        self.__score = score</span><br><span class="line">student1 = Student(<span class="string">'zhang'</span>, <span class="number">80</span>)</span><br><span class="line">student1.__name</span><br><span class="line"><span class="comment"># 结果会报错</span></span><br><span class="line">AttributeError                            Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-5</span><span class="number">-6e36959</span>d00c5&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">      <span class="number">5</span>         self.__score = score</span><br><span class="line">      <span class="number">6</span> student1 = Student(<span class="string">'zhang'</span>, <span class="number">80</span>)</span><br><span class="line">----&gt; 7 student1.__name</span><br><span class="line"></span><br><span class="line">AttributeError: <span class="string">'Student'</span> object has no attribute <span class="string">'__name'</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<pre><code>3.对类名使用大写字母开头的单词（如CapWorld），模块名应该用小写加下划线的方式（如lower_with_under.py）。普通变量用小写字母加下划线方式，全局变量使用大写字母加下划线（如SOME_VARIABLE）。
-</code></pre><font size="3"><strong>应该避免</strong></font>     
+<p>  1.除了计数器和迭代器外，避免单字符名称。</p>
+<p>  2.避免以双下划线开头以双下划线结尾的变量，这类变量为python专有变量，如 <strong>name</strong>, <strong>doc</strong> 。</p>
+<p>  3.因为python是动态类型语言，变量名不应带有类型信息，类似 student_dict, name_list 等不是好的命名方式。</p>
 
-<pre><code>1.除了计数器和迭代器外，避免单字符名称。
-
-2.避免以双下划线开头以双下划线结尾的变量，这类变量为python专有变量，如 __name__, __doc__ 。
-
-3.因为python是动态类型语言，变量名不应带有类型信息，类似 student_dict, name_list 等不是好的命名方式。
-</code></pre>
       
     </div>
     
