@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="python," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="title: Python中的线程与进程comments: falsedate: 2018-12-20 11:07:12tags: python categories: 技术篇线程与进程进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的">
+<meta name="description" content="线程与进程进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的资源，进程控制块用来保存程序运行的状态。由于一个进程往往要同时干多件事，这就需要同时运行对个“子任务”，这些进程内的“子任务”称为线程。线程又叫轻量级进程，是一个基本的CPU执行">
+<meta name="keywords" content="python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="冻硬的苹果">
+<meta property="og:title" content="Python中的线程与进程">
 <meta property="og:url" content="http://yoursite.com/2018/12/20/Python中的线程与进程/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="title: Python中的线程与进程comments: falsedate: 2018-12-20 11:07:12tags: python categories: 技术篇线程与进程进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的">
+<meta property="og:description" content="线程与进程进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的资源，进程控制块用来保存程序运行的状态。由于一个进程往往要同时干多件事，这就需要同时运行对个“子任务”，这些进程内的“子任务”称为线程。线程又叫轻量级进程，是一个基本的CPU执行">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-05T09:15:18.797Z">
+<meta property="og:updated_time" content="2019-01-05T09:19:29.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="冻硬的苹果">
-<meta name="twitter:description" content="title: Python中的线程与进程comments: falsedate: 2018-12-20 11:07:12tags: python categories: 技术篇线程与进程进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的">
+<meta name="twitter:title" content="Python中的线程与进程">
+<meta name="twitter:description" content="线程与进程进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的资源，进程控制块用来保存程序运行的状态。由于一个进程往往要同时干多件事，这就需要同时运行对个“子任务”，这些进程内的“子任务”称为线程。线程又叫轻量级进程，是一个基本的CPU执行">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title> | 冻硬的苹果</title>
+  <title>Python中的线程与进程 | 冻硬的苹果</title>
   
 
 
@@ -289,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline"></h1>
+          <h1 class="post-title" itemprop="name headline">Python中的线程与进程</h1>
         
 
         <div class="post-meta">
@@ -312,24 +313,35 @@
           </span>
 
           
-
-          
+            <span class="post-category" >
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/12/20/Python中的线程与进程/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2018/12/20/Python中的线程与进程/" itemprop="commentCount"></span>
-                </a>
+              <span class="post-meta-divider">|</span>
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
               </span>
-            
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
           
 
           
           
-             <span id="/2018/12/20/Python中的线程与进程/" class="leancloud_visitors" data-flag-title="">
+             <span id="/2018/12/20/Python中的线程与进程/" class="leancloud_visitors" data-flag-title="Python中的线程与进程">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -360,9 +372,7 @@
       
 
       
-        <hr>
-<p>title: Python中的线程与进程<br>comments: false<br>date: 2018-12-20 11:07:12<br>tags: python</p>
-<h2 id="categories-技术篇"><a href="#categories-技术篇" class="headerlink" title="categories: 技术篇"></a>categories: 技术篇</h2><font size="4"><strong>线程与进程</strong></font><br>进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。<br><br>进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的资源，进程控制块用来保存程序运行的状态。<br><br>由于一个进程往往要同时干多件事，这就需要同时运行对个“子任务”，这些进程内的“子任务”称为线程。<br><br>线程又叫轻量级进程，是一个基本的CPU执行单元，也是程序执行过程中的最小单元。<br><br><font size="4"><strong>线程</strong></font>       
+        <font size="4"><strong>线程与进程</strong></font><br>进程，按照我的理解就是一个正在进行中的程序，该程序可能正在被执行，也可能处于等待状态，等待被执行。<br><br>进程由程序，数据集，进程控制块三部分组成。程序用来描述进程中的哪些功能以及如何完成，数据集是程序执行过程中所使用的资源，进程控制块用来保存程序运行的状态。<br><br>由于一个进程往往要同时干多件事，这就需要同时运行对个“子任务”，这些进程内的“子任务”称为线程。<br><br>线程又叫轻量级进程，是一个基本的CPU执行单元，也是程序执行过程中的最小单元。<br><br><font size="4"><strong>线程</strong></font>       
 
 <font size="3"><strong>创建线程</strong></font>     
 
@@ -428,6 +438,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
 
       
       
@@ -478,13 +494,6 @@
 
           
 
-  
-    <div class="comments" id="comments">
-    </div>
-  
-
-
-
         </div>
         
           
@@ -504,17 +513,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -578,22 +578,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#categories-技术篇"><span class="nav-number">1.</span> <span class="nav-text">categories: 技术篇</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
