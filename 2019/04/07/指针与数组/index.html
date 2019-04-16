@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C语言," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一. 指针介绍指针之前，先看一个例子，通过这个例子感受一下指针存在的意义。        假设我们需要一个函数，这个函数的功能是交换两个变量 x 和 y 的值，我们首先想到的代码是这样的：123temp = x;     x = y;     y = temp; 上面三行代码可以实现交换两个变量的值，然后我们可以编写一个函数：123456789101112131415161718192021#in">
+<meta name="keywords" content="C语言">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针与数组">
+<meta property="og:url" content="http://yoursite.com/2019/04/07/指针与数组/index.html">
+<meta property="og:site_name" content="冻硬的苹果">
+<meta property="og:description" content="一. 指针介绍指针之前，先看一个例子，通过这个例子感受一下指针存在的意义。        假设我们需要一个函数，这个函数的功能是交换两个变量 x 和 y 的值，我们首先想到的代码是这样的：123temp = x;     x = y;     y = temp; 上面三行代码可以实现交换两个变量的值，然后我们可以编写一个函数：123456789101112131415161718192021#in">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-04-16T09:20:19.082Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="指针与数组">
+<meta name="twitter:description" content="一. 指针介绍指针之前，先看一个例子，通过这个例子感受一下指针存在的意义。        假设我们需要一个函数，这个函数的功能是交换两个变量 x 和 y 的值，我们首先想到的代码是这样的：123temp = x;     x = y;     y = temp; 上面三行代码可以实现交换两个变量的值，然后我们可以编写一个函数：123456789101112131415161718192021#in">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/07/指针与数组/"/>
+
+
+
+
+
+  <title>指针与数组 | 冻硬的苹果</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?608723899f726bbda4571e2884b98a54";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冻硬的苹果</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/07/指针与数组/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冻硬的苹果">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冻硬的苹果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">指针与数组</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-07T17:03:09+08:00">
+                2019-04-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+             <span id="/2019/04/07/指针与数组/" class="leancloud_visitors" data-flag-title="指针与数组">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><font size="3"><strong>一. 指针</strong></font><br>介绍指针之前，先看一个例子，通过这个例子感受一下指针存在的意义。       </p>
+<p>假设我们需要一个函数，这个函数的功能是交换两个变量 x 和 y 的值，我们首先想到的代码是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">temp = x;     </span><br><span class="line">x = y;     </span><br><span class="line">y = temp;</span><br></pre></td></tr></table></figure></p>
+<p>上面三行代码可以实现交换两个变量的值，然后我们可以编写一个函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt; </span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">interchange</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> temp;</span><br><span class="line">  </span><br><span class="line">  temp = x;</span><br><span class="line">  x = y;</span><br><span class="line">  y = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">interchange</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> a = <span class="number">1</span>, b = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"交换前: a = %d, b = %d\n"</span>, a, b);</span><br><span class="line">  interchange(a, b);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"交换后: a = %d, b = %d\n"</span>, a, b);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>那么这段代码打印的结果是什么呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">交换前: a = 1, b = 2</span><br><span class="line">交换后: a = 1, b = 2</span><br></pre></td></tr></table></figure></p>
+<p>你没看错，值并没有交换，显然 <code>interchange()</code> 函数是没问题的，那么问题在哪里？我们可以在 <code>interchange()</code> 函数打印 x 和 y 的值看看：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">交换前: a = 1, b = 2</span><br><span class="line">交换前: x = 1, y = 2</span><br><span class="line">交换后: x = 2, y = 1</span><br><span class="line">交换后: a = 1, b = 2</span><br></pre></td></tr></table></figure></p>
+<p>现在我们可以看清问题所在了， <code>interchange()</code> 函数只交换了它本身所属变量 x 和 y 的值，并没有改变主函数中 a 和 b 的值。因此，我们无法通过 <code>interchange()</code> 来修改主函数变量。      </p>
+<p>那么，能不能通过 <code>interchange()</code> 来修改主函数变量呢？当然可以，但要使用指针。       </p>
+<p><strong>1.1 指针简介</strong><br>从根本上看，指针（pointer）是一个值为内存地址的变量（或者数据对象）。如 char 类型变量的值是字符，int 类型变量的值是整数，指针变量的值是地址。             </p>
+<p>假设一个指针变量名是ptr，可以编写如下语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptr = &amp;pooh      //把 pooh 的地址赋给 ptr</span><br></pre></td></tr></table></figure></p>
+<p>对于这条语句，我们说 ptr 指向 pooh。ptr 与 &amp;pooh 的区别是 ptr 是变量，而 &amp;pooh 是常量。或者，ptr 是可修改的左值，而 &amp;pooh 是右值。这意味着，还可以让 ptr 指向别处。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ptr = &amp;bah       //把 ptr 指向 bah</span><br></pre></td></tr></table></figure></p>
+<p><strong>1.2 两个运算符：* 和 &amp;</strong><br>地址运算符：<strong>&amp;</strong><br>后跟一个变量名时，&amp; 给出该变量的地址。如 &amp;nurse 表示变量 nurse 的地址。           </p>
+<p>地址运算符：<strong>*</strong><br>该运算符也叫解引用运算符，后跟一个指针或地址时，* 给出储存在指针指向地址上的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nurse = 22;</span><br><span class="line">ptr = &amp;nurse;</span><br><span class="line">val = *ptr;</span><br></pre></td></tr></table></figure></p>
+<p>上述代码中，把 nurse 的地址赋给 ptr，把对 ptr 解引用的值赋给 val，最终结果是把22赋给 val。         </p>
+<p><strong>1.3 声明指针</strong><br>指针是个变量，因此使用它之前同样需要声明。但是，并不像 int 或者double 那样存在一个 pointer 的变量类型。因为没有 pointer 这个类型说明符，所以我们不能这样声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pointer ptr;     //无效声明</span><br></pre></td></tr></table></figure></p>
+<p>为什么不能这样声明？或者为什么不这样设计？<strong>因为声明指针变量时必须指定指针所指向变量的类型，因为不同的变量类型占用不同的存储空间，一些指针操作要求知道操作对象的大小。另外，程序必须知道存储在指定地址上的数据类型。</strong>long 和 float 可能占用相同的存储空间，但是它们储存的数字却大相径庭。        </p>
+<p>下面是一些指针的声明示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">int *pi;        // pi 是指向 int 类型变量的指针</span><br><span class="line">char *pc;       // pc 是指向 char 类型变量的指针</span><br><span class="line">float *pf, *pg;       // pf、pg 都是指向 float 类型变量的指针</span><br><span class="line">```         </span><br><span class="line">**1.4 指针在函数间的通信**           </span><br><span class="line">回到最开始的那个问题，如何使用函数 &lt;code&gt;interchange()&lt;/code&gt; 交换两个变量的值？这里我们使用指针 &lt;code&gt;interchange(int *x, int *y)&lt;/code&gt; 接收两个指针，通过指针来交换变量的值。</span><br><span class="line">&#123;% codeblock lang:cpp %&#125;</span><br><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">void interchange(int *x, int *y)</span><br><span class="line">&#123;</span><br><span class="line">  int temp;</span><br><span class="line"></span><br><span class="line">  temp = *x;</span><br><span class="line">  *x = *y;</span><br><span class="line">  *y = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void interchange(int *x, int *y);</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">  int a = 1, b = 2;</span><br><span class="line"></span><br><span class="line">  printf(&quot;交换前: a = %d, b = %d\n&quot;, a, b);</span><br><span class="line">  interchange(&amp;a, &amp;b);</span><br><span class="line">  printf(&quot;交换后: a = %d, b = %d\n&quot;, a, b);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line">//打印结果</span><br><span class="line">交换前: a = 1, b = 2</span><br><span class="line">交换后: a = 2, b = 1</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br><span class="line">**变量：名称、地址和值**       </span><br><span class="line">编写程序时，可以认为变量有两个属性：名称和值。计算机在编译和加载程序后，认为变量也有两个属性：地址和值。地址就是变量在计算机内部的名称。              </span><br><span class="line">              </span><br><span class="line">&lt;font size=3&gt;**二. 数组和指针**&lt;/font&gt;       </span><br><span class="line">计算机的硬件指令非常依赖地址，指针在某种程度上把程序员想要传达的指令以更接近机器的方式表达。因此，使用指针的程序更有效率。尤其是，指针能有效地处理数组。实际上，数组表示法其实是变相地使用指针。       </span><br><span class="line">            </span><br><span class="line">**2.1 指针表示法和数组表示法**</span><br><span class="line">在数组中，**数组名就是数组首元素的地址**。对于一个数组 array，下面语句成立：            </span><br><span class="line">&lt;code&gt;array == &amp;array[0];&lt;/code&gt;       </span><br><span class="line">同时，下面语句也成立：</span><br></pre></td></tr></table></figure></p>
+<p>array[i] == *(array + i);<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">上面的例子中有两种表示方法，数字表示法和指针表示法。在C语言中，这两种表示法是等价的。但指针表示法（尤其与递增运算符一起使用时）更接近机器语言，因此一些编译器在编译时能生成效率更高的代码。          </span><br><span class="line">             </span><br><span class="line">**2.2 指针操作**          </span><br><span class="line">C语言提供了一些基本的指针操作，下面介绍几种不同的操作：       </span><br><span class="line">1.赋值       </span><br><span class="line">在赋值操作中，我们可以把数组名、带地址运算符的变量名或者指针赋值给另外一个指针。      </span><br><span class="line">          </span><br><span class="line">2.解引用（\*）        </span><br><span class="line">\* 运算符给出指针指向地址上存储的值。            </span><br><span class="line">            </span><br><span class="line">3.取址（&amp;）            </span><br><span class="line">指针变量本身也有自己的地址和值。&amp; 运算符给出指针本身的地址。        </span><br><span class="line">             </span><br><span class="line">4.指针与整数相加          </span><br><span class="line">指针与整数相加时，**整数会和指针所指向类型的大小（通常以字节为单位）相乘，然后把结果与初始地址相加**。因此，&amp;array[i] 与 array + i 等价。如果相加的结果超出了初始指针指向数组的范围，计算的结果是未定义的。除非正好超过数组末尾的第一个位置，C保证该指针有效。          </span><br><span class="line">            </span><br><span class="line">5.递增指针和递减指针              </span><br><span class="line">递增指针可以让指针移动至该指针指向数组的下一个位置。递减指针反之。          </span><br><span class="line">           </span><br><span class="line">6.指针减去一个整数        </span><br><span class="line">指针减去整数和指针加上整数的运算原理一样，只能指针减去整数不能反过来。                </span><br><span class="line">        </span><br><span class="line">7.指针求差            </span><br><span class="line">求差的两个指针分别指向同一个数组的不同元素，通过求差计算两个元素之间的距离。这里的距离是以元素为单位，即相差多少个元素，不是以内存为单位。                 </span><br><span class="line">             </span><br><span class="line">8.比较          </span><br><span class="line">使用关系运算符可以比较两个指针的值，是指针的值，而不是指针所指向元素的值。            </span><br><span class="line">           </span><br><span class="line">**2.3 保护数组中的数据**          </span><br><span class="line">当我们编写一个处理数组的函数时，一般会用指针处理，因为指针的效率更高。有时候，我们不需要改变数组元素的值，为了防止数组被意外修改，我们需要保护数组中的数据。C语言提供关键字 **const** 用以保护数据。      </span><br><span class="line">```     </span><br><span class="line">int int sum(const int ar[], int n);</span><br><span class="line"></span><br><span class="line">int sum(const int ar[], int n)</span><br><span class="line">&#123;</span><br><span class="line">  int total = 0;</span><br><span class="line"></span><br><span class="line">  for(int i = 0; i &lt; n; i++)</span><br><span class="line">    total += ar[i];</span><br><span class="line">  return total;</span><br><span class="line">&#125;</span><br><span class="line">```      </span><br><span class="line">在上例中，使用 const 后，函数在处理该数组时，会将其视为常量。如果函数要修改 ar 数组，程序会报错。const 要在函数定义和函数声明中同时使用。</span><br><span class="line">            </span><br><span class="line">C语言的 #define 指令可以创建类似功能的符号常量，但 const 的用法更加灵活。</span><br></pre></td></tr></table></figure></p>
+<p>double rates[3] = {1.2, 2.3, 3.4};<br>const double *pd = rates;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">上述代码中把 pd 指向的 double 类型的值声明为 const，这表明不能使用 pd 来改变它所指向的值。即：</span><br></pre></td></tr></table></figure></p>
+<p>*(pd + 1) = 9.9;    //不允许<br>pd[1] = 9.9;       //不允许<br>rates[1] = 9.9;     //允许<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">关于指针赋值和 const 需要注意一些规则。**把 const 数据和非 const 数据的地址初始化为指向 const 的指针或为其赋值是合法的：**        </span><br><span class="line">```       </span><br><span class="line">int array1[3] = [1, 2, 3];</span><br><span class="line">const int array2[4] = [5, 6, 7, 8];</span><br><span class="line">const int *pc;</span><br><span class="line">pc = array1;     //有效</span><br><span class="line">pc = array2;     //有效</span><br></pre></td></tr></table></figure></p>
+<p><strong>但是，只能把非 const 数据的地址赋值非 const 指针：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int array1[3] = [1, 2, 3];</span><br><span class="line">const int array2[4] = [5, 6, 7, 8];</span><br><span class="line">int *pc;</span><br><span class="line">pc = array1;     //有效</span><br><span class="line">pc = array2;     //无效</span><br></pre></td></tr></table></figure></p>
+<p>这点应该很好理解，如果把 const 数据的地址赋值非 const 指针，那么就可以通过非 const 指针来修改 const 数据，这一来 const 的功能也就不存在了。         </p>
+<p>此外 const 还有其他用法。例如，可以声明一个不能指向别处的指针：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int array1[3] = [1, 2, 3];</span><br><span class="line">int * const pc = array1;</span><br><span class="line">pc = &amp;array1[1];      // 不允许，该指针不能指向别处</span><br><span class="line">*pc = 8;           // 允许，修改了array1[0]的值</span><br></pre></td></tr></table></figure></p>
+<p>该例中，const 限定的是指针本身的值，上一例中 const 限定的是指针所指向地址的值。        </p>
+<p>既然这样，那我们能不能既限定指针本身的值，又限定指针所指向地址的值？当然可以，使用两次 const 就行了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">int array1[3] = [1, 2, 3];</span><br><span class="line">const int * const pc = array1;</span><br><span class="line">pc = &amp;array1[1];      // 不允许    </span><br><span class="line">*pc = 8;            // 不允许</span><br></pre></td></tr></table></figure></p>
+<p><strong>2.4 指针和多维数组</strong>         </p>
+<p>假设有下面的二维数组：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int array[4][2];</span><br></pre></td></tr></table></figure></p>
+<p>由于 array 表示首元素的地址，array 和 它的第一个元素 array[0] 的起始位置相同，数组名又表示数组首元素的地址，所以它们在数值上相等，即 array == array[0]。            </p>
+<p>当我们给指针地址加1的时候，array + 1 和 array[0] + 1 的含义是不一样的，array + 1 表示指针指向 array[1]，即 array 的第二个元素。而 array[0] + 1 表示指针指向 array[0][1]，即 array 第一个元素的的第二个元素。       </p>
+<p>当我们对 array 解引用时，<em>array == array[0]，即 \</em>array 的结果仍然是个地址，是 array 第一个元素的地址，我们再对它进行一次解引用，**array == *array[0] == array[0][0]，这时才得到array[0][0] 的值。即 array 的值是 array[0][0] 地址的地址。<br>所以，指针与多维数组有下面的关系：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array          //二维数组首元素的地址</span><br><span class="line">array + 1      //二维数组第二个元素的地址</span><br><span class="line">*(array + 1)   //二维数组第二个元素的首元素地址</span><br><span class="line">*(array + 1) + 1  //二维数组第二个元素的第二个元素地址</span><br><span class="line">*(*(array + 1) + 1) //二维数组第二个元素的第二个元素值，即array[1][1]</span><br></pre></td></tr></table></figure></p>
+<p>如何声明一个指向二维数组的指针变量？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int (*pz)[2];</span><br></pre></td></tr></table></figure></p>
+<p>上述代码的含义是，声明一个指向数组的指针，该数组含有两个 int 类型值。为什么要加括号？因为 [] 的优先级高于 *，如果不加括号：           </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int *pz[2];</span><br></pre></td></tr></table></figure>
+<p>不加括号表示的是，声明一个内含两个指针变量的数组，该指针变量指向 int 类型。          </p>
+<p>如何在函数中利用指针声明多维数组？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void function(int (*pt)[2], int rows);</span><br></pre></td></tr></table></figure></p>
+<p>当且仅当 pt 是一个函数的形参时，可以这样声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void function(int pt[][2], int rows);</span><br></pre></td></tr></table></figure></p>
+<p>上述声明的一个显著缺点就是，数组的列必须是确定值，不能以参数形式传入，于是C语言有了<strong>变长数组</strong>这一功能（C++不支持）。有了变长数组声明就变得简单了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void function(int rows, int cols, int array[rows][cols]);</span><br></pre></td></tr></table></figure></p>
+<p>需要注意的是，必须先声明 rows 和 cols 两个变量后，再在变长数组中使用它们。          </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"># C语言</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/04/排序算法（二）/" rel="next" title="排序算法（二）">
+                <i class="fa fa-chevron-left"></i> 排序算法（二）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="冻硬的苹果" />
+            
+              <p class="site-author-name" itemprop="name">冻硬的苹果</p>
+              <p class="site-description motion-element" itemprop="description">企者不立 跨者不行</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冻硬的苹果</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz',
+        appKey: 'dQHka3SAsHH77kdTFfwMPx6U',
+        placeholder: '欢迎交流',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz", "dQHka3SAsHH77kdTFfwMPx6U");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
