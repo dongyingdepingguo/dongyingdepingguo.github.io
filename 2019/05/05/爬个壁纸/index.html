@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="python," />
+  <meta name="keywords" content="爬虫," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="全局解释器锁（Global Interpreter Lock，缩写GIL），是计算机程序设计语言用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。即便是在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。       作为一种控制线程同步的机制，全局解释器锁并非只在python的解释器上存在，除了 CPython 还有 Ruby MRI 也存在 GIL。       由于">
-<meta name="keywords" content="python">
+<meta name="description" content="实验室换了台新电脑，Windows桌面太单调了，打算弄一些好看的壁纸，遂爬了个网站。因为我对壁纸的需求是分辨率优先，其次是内容，默认的链接是 2880*1620 高分辨率壁纸的第一页。        但又不能全爬，有些 Celebrity 身着比基尼，内容尺度略大，不好堂而皇之的挂到实验室电脑的桌面上，所以要过滤一些内容。          然后，写了个能显示进度条的下载器，总之，是一些很简单的东">
+<meta name="keywords" content="爬虫">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python的全局解释器锁 (GIL)">
-<meta property="og:url" content="http://yoursite.com/2018/12/10/python的全局解释器锁 (GIL)/index.html">
+<meta property="og:title" content="爬个壁纸">
+<meta property="og:url" content="http://yoursite.com/2019/05/05/爬个壁纸/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="全局解释器锁（Global Interpreter Lock，缩写GIL），是计算机程序设计语言用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。即便是在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。       作为一种控制线程同步的机制，全局解释器锁并非只在python的解释器上存在，除了 CPython 还有 Ruby MRI 也存在 GIL。       由于">
+<meta property="og:description" content="实验室换了台新电脑，Windows桌面太单调了，打算弄一些好看的壁纸，遂爬了个网站。因为我对壁纸的需求是分辨率优先，其次是内容，默认的链接是 2880*1620 高分辨率壁纸的第一页。        但又不能全爬，有些 Celebrity 身着比基尼，内容尺度略大，不好堂而皇之的挂到实验室电脑的桌面上，所以要过滤一些内容。          然后，写了个能显示进度条的下载器，总之，是一些很简单的东">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-10T12:22:34.228Z">
+<meta property="og:updated_time" content="2019-05-05T08:24:22.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python的全局解释器锁 (GIL)">
-<meta name="twitter:description" content="全局解释器锁（Global Interpreter Lock，缩写GIL），是计算机程序设计语言用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。即便是在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。       作为一种控制线程同步的机制，全局解释器锁并非只在python的解释器上存在，除了 CPython 还有 Ruby MRI 也存在 GIL。       由于">
+<meta name="twitter:title" content="爬个壁纸">
+<meta name="twitter:description" content="实验室换了台新电脑，Windows桌面太单调了，打算弄一些好看的壁纸，遂爬了个网站。因为我对壁纸的需求是分辨率优先，其次是内容，默认的链接是 2880*1620 高分辨率壁纸的第一页。        但又不能全爬，有些 Celebrity 身着比基尼，内容尺度略大，不好堂而皇之的挂到实验室电脑的桌面上，所以要过滤一些内容。          然后，写了个能显示进度条的下载器，总之，是一些很简单的东">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/10/python的全局解释器锁 (GIL)/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/05/05/爬个壁纸/"/>
 
 
 
 
 
-  <title>python的全局解释器锁 (GIL) | 冻硬的苹果</title>
+  <title>爬个壁纸 | 冻硬的苹果</title>
   
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/10/python的全局解释器锁 (GIL)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/05/爬个壁纸/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="冻硬的苹果">
@@ -290,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">python的全局解释器锁 (GIL)</h1>
+          <h1 class="post-title" itemprop="name headline">爬个壁纸</h1>
         
 
         <div class="post-meta">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-10T18:34:38+08:00">
-                2018-12-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-05T16:06:53+08:00">
+                2019-05-05
               </time>
             
 
@@ -341,7 +341,7 @@
 
           
           
-             <span id="/2018/12/10/python的全局解释器锁 (GIL)/" class="leancloud_visitors" data-flag-title="python的全局解释器锁 (GIL)">
+             <span id="/2019/05/05/爬个壁纸/" class="leancloud_visitors" data-flag-title="爬个壁纸">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -372,22 +372,9 @@
       
 
       
-        <p><strong>全局解释器锁（Global Interpreter Lock，缩写GIL）</strong>，是计算机程序设计语言用于同步线程的一种机制，它使得任何时刻仅有一个线程在执行。即便是在多核心处理器上，使用 GIL 的解释器也只允许同一时间执行一个线程。      </p>
-<p>作为一种控制线程同步的机制，全局解释器锁并非只在python的解释器上存在，除了 CPython 还有 Ruby MRI 也存在 GIL。      </p>
-<p>由于 GIL 的存在，线程要想被解释器执行，首先需要获取 GIL ，如果存在多个线程，那么未获取 GIL 的线程只能等待正在运行的线程释放 GIL 。线程什么时候释放 GIL 呢？当碰到 I/O 阻塞，或者不间断地在 Python2 中运行100次解释器的计步（ticks），再或者不间断地在 Python3 运行15毫秒，该线程就会释放 GIL ，从而让其他线程有机会获得。           </p>
-<p><strong>这种机制会导致什么结果？</strong>在 I/O 密集型的任务中，由于线程一旦碰到 I/O 阻塞，就会释放 GIL 让其他线程有机会获得，因此多线程在一定程度上可以提高 I/O 密集型任务的执行效率，但提升有限，因为 GIL 只允许解释器同一时间执行一个线程。好比一个人同时做几门作业，但他一个时间段只能做一门，如果在这几门作业间来回切换，那么看上去就好像同时在做几门，但归根到底他只是一个人在做。如果是在 CPU 密集型的任务中，倘若计算工作多，ticks 计数很快会达到阈值（100），这时会触发线程释放 GIL，同时唤醒的线程会获得 GIL， 多个线程的来回切换也要消耗资源，因此由于 GIL 的存在 Python 下的多线程很不适合 CPU 密集型任务。即便是 Python3 改用计时器，对效率的提升依然不尽如人意。      </p>
-<p>还有一个比较让人崩溃的结果是，<strong>多核多线程比单核多线程更差</strong>。因为单核多线程，每次释放 GIL ，唤醒的那个线程马上就能获取 GIL ，所以能够无缝执行。但在多核下，某一 CPU 释放 GIL 后，其他 CPU 上的线程都会参与竞争，但 GIL 可能马上又会被该 CPU 拿到，导致其他几个 CPU 上被唤醒的线程会一直等待切换时间，然后再进入待调度状态，这样会造成<strong>线程颠簸（thrashing）</strong>，使效率更低。         </p>
-<p>既然 GIL 会导致这样的结果，<strong>那为何 CPython 要这样设计？</strong>要知道 Python 诞生于 1991 年，在那个年代，硬件配置很简陋，单核 CPU 是主流，多线程的应用场景也不多，大部分时候还是以单线程为主，单线程不需要涉及线程的上下文切换，效率反而比多线程更高（在多核环境下，不适用此规则）。所以，用 GIL 这种粗暴的方式来保证数据的安全，并非不可取。同时，GIL 的设计简化了 CPython 的实现，使得对象模型，包括关键的内建类型如字典，都是隐含可以并发访问的（我也看不懂这句话是啥意思。。。）。       </p>
-<p><strong>如何避免 GIL 带来的不良后果？如果你的任务是 CPU 密集型的，毫无疑问用多进程，它可以充分发挥多核 CPU 的优势。如果你的任务是 I/O 密集型的（如爬虫），用多线程可以在一定程度上提高效率，如果你想继续追求效率，建议用协程，如果你还嫌效率不够高，建议别用Python了，换语言吧！</strong>       </p>
-<p><strong>参考文章</strong>   </p>
-<ol>
-<li><a href="https://foofish.net/thread.html" target="_blank" rel="noopener">为什么有人说 Python 多线程是鸡肋？</a>   </li>
-<li><a href="https://blog.csdn.net/jinguangliu/article/details/45422663" target="_blank" rel="noopener">Python高级特性：全局解释器锁GIL基本概念</a>    </li>
-<li><a href="https://zh.wikipedia.org/wiki/%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81" target="_blank" rel="noopener">全局解释器锁</a>     </li>
-<li><a href="https://www.cnblogs.com/weswes/p/9987986.html" target="_blank" rel="noopener">Python如何规避全局解释器锁(GIL)带来的限制</a>     </li>
-<li><a href="http://www.cnblogs.com/hellojesson/p/6409899.html" target="_blank" rel="noopener">Python全局解释器锁 -- GIL</a>     
-</li>
-</ol>
+        <p>实验室换了台新电脑，Windows桌面太单调了，打算弄一些好看的壁纸，遂爬了个<a href="http://wallpaperswide.com" target="_blank" rel="noopener">网站</a>。因为我对壁纸的需求是分辨率优先，其次是内容，默认的链接是 2880*1620 高分辨率壁纸的第一页。       </p>
+<p>但又不能全爬，有些 Celebrity 身着比基尼，内容尺度略大，不好堂而皇之的挂到实验室电脑的桌面上，所以要过滤一些内容。         </p>
+<p>然后，写了个能显示进度条的下载器，总之，是一些很简单的东西，也没用scrapy模块。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">getWallpaper</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, url=<span class="string">'http://wallpaperswide.com/2880x1620-wallpapers-r/page/1.html'</span>)</span>:</span></span><br><span class="line">        self.url = url</span><br><span class="line">        self.target_categories_list = [<span class="string">'Aero'</span>, <span class="string">'Animals'</span>, <span class="string">'Architecture'</span>, <span class="string">'Artistic'</span>, <span class="string">'Black and White'</span>, <span class="string">'Cartoons'</span>,</span><br><span class="line">                                       <span class="string">'City'</span>, <span class="string">'Movies'</span>, <span class="string">'Nature'</span>, <span class="string">'Seasons'</span>, <span class="string">'Space'</span>, <span class="string">'Travel'</span>]</span><br><span class="line">        self.dir = <span class="string">'/Users/Mac/Desktop/wallpaper/'</span></span><br><span class="line">        self.header = &#123;</span><br><span class="line">            <span class="string">"User-Agent"</span>: <span class="string">"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, "</span></span><br><span class="line">                          <span class="string">"like Gecko) Chrome/68.0.3440.106 Safari/537.36"</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_content_url</span><span class="params">(self)</span>:</span></span><br><span class="line">        content_url_list = []</span><br><span class="line">        html = requests.get(self.url, headers=self.header)</span><br><span class="line">        time.sleep(random.uniform(<span class="number">1</span>, <span class="number">4</span>))</span><br><span class="line">        bsobj = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</span><br><span class="line">        bsobj_ele = bsobj.findAll(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'mini-hud'</span>, <span class="string">'id'</span>: <span class="string">'hudtitle'</span>&#125;)</span><br><span class="line">        <span class="keyword">for</span> url_attrs <span class="keyword">in</span> bsobj_ele:</span><br><span class="line">            content_url_list.append(<span class="string">'http://wallpaperswide.com'</span> + url_attrs.find(<span class="string">'a'</span>)[<span class="string">'href'</span>])</span><br><span class="line">        <span class="keyword">return</span> content_url_list</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_download_url</span><span class="params">(self)</span>:</span></span><br><span class="line">        download_url_list = []</span><br><span class="line">        content_url_list = self.get_content_url()</span><br><span class="line">        <span class="keyword">for</span> url <span class="keyword">in</span> content_url_list:</span><br><span class="line">            html = requests.get(url, headers=self.header)</span><br><span class="line">            time.sleep(random.uniform(<span class="number">1</span>, <span class="number">4</span>))</span><br><span class="line">            bsobj = BeautifulSoup(html.text, <span class="string">'lxml'</span>)</span><br><span class="line">            target_category = bsobj.find(<span class="string">'div'</span>, &#123;<span class="string">'class'</span>: <span class="string">'breadCrumbs'</span>, <span class="string">'itemprop'</span>: <span class="string">'breadcrumb'</span>&#125;).findAll(<span class="string">'a'</span>)[<span class="number">1</span>].text</span><br><span class="line">            <span class="keyword">if</span> target_category <span class="keyword">in</span> self.target_categories_list:</span><br><span class="line">                bsobj_ele1 = bsobj.find(name=<span class="string">'a'</span>, attrs=&#123;<span class="string">'target'</span>: <span class="string">'_self'</span>&#125;, text=<span class="string">'2880x1620'</span>)</span><br><span class="line">                <span class="keyword">if</span> bsobj_ele1 <span class="keyword">is</span> <span class="keyword">not</span> []:</span><br><span class="line">                    download_url_list.append(<span class="string">'http://wallpaperswide.com'</span> + bsobj_ele1[<span class="string">'href'</span>])</span><br><span class="line">        <span class="keyword">return</span> download_url_list</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">downloader</span><span class="params">(self, url)</span>:</span></span><br><span class="line">        header = self.header</span><br><span class="line">        file = requests.get(url, headers=header, stream=<span class="keyword">True</span>)</span><br><span class="line">        time.sleep(random.uniform(<span class="number">1</span>, <span class="number">4</span>))</span><br><span class="line">        file_size = int(file.headers[<span class="string">'Content-Length'</span>]) / <span class="number">1024</span></span><br><span class="line">        file_dir = self.dir</span><br><span class="line">        file_name = file_dir + url.split(<span class="string">'/'</span>)[<span class="number">-1</span>]</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.isdir(file_dir):</span><br><span class="line">            os.makedirs(file_dir)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(file_name):</span><br><span class="line">            os.system(<span class="string">r"touch &#123;&#125;"</span>.format(file_name))</span><br><span class="line">            print(<span class="string">'开始下载图片文件 %s :'</span> % file_name.split(<span class="string">'-'</span>)[<span class="number">0</span>].split(<span class="string">'/'</span>)[<span class="number">-1</span>])</span><br><span class="line">            print(<span class="string">'文件大小 %0.2f Mb'</span> % (file_size / <span class="number">1024</span>))</span><br><span class="line">            print(<span class="string">'下载进度...'</span>)</span><br><span class="line">            <span class="keyword">with</span> open(file_name, <span class="string">'wb'</span>) <span class="keyword">as</span> f:</span><br><span class="line">                chunk_size = <span class="number">1024</span></span><br><span class="line">                chunk_totall = <span class="number">0</span></span><br><span class="line">                <span class="keyword">for</span> chunk <span class="keyword">in</span> file.iter_content(chunk_size=chunk_size):</span><br><span class="line">                    f.write(chunk)</span><br><span class="line">                    chunk_totall += len(chunk)</span><br><span class="line">                    download_percent = chunk_totall / file_size / <span class="number">1024</span></span><br><span class="line">                    print(<span class="string">'\r'</span> + <span class="string">'*'</span> * int(download_percent * <span class="number">50</span>) + <span class="string">'%0.2f%%'</span> % (download_percent * <span class="number">100</span>), end=<span class="string">''</span>)</span><br><span class="line">                print(<span class="string">'\n'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_wallpaper</span><span class="params">(self)</span>:</span></span><br><span class="line">        download_url_list = self.get_download_url()</span><br><span class="line">        <span class="keyword">for</span> download_url <span class="keyword">in</span> download_url_list:</span><br><span class="line">            self.downloader(download_url)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    test = getWallpaper()</span><br><span class="line">    test.get_wallpaper()</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -405,7 +392,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"># python</a>
+            <a href="/tags/爬虫/" rel="tag"># 爬虫</a>
           
         </div>
       
@@ -418,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/25/冬日随想/" rel="next" title="冬日随想">
-                <i class="fa fa-chevron-left"></i> 冬日随想
+              <a href="/2019/04/07/指针与数组/" rel="next" title="指针与数组">
+                <i class="fa fa-chevron-left"></i> 指针与数组
               </a>
             
           </div>
@@ -427,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/20/Python中的线程与进程/" rel="prev" title="Python中的线程与进程">
-                Python中的线程与进程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
