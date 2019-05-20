@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
+<meta name="description" content="神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我们只需要找到我们所处位置的梯度，沿着梯度反方向就能找到最快下山的路线。假">
 <meta property="og:type" content="article">
 <meta property="og:title" content="神经网络--反向传播算法">
 <meta property="og:url" content="http://yoursite.com/2018/05/22/神经网络-反向传播算法/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
+<meta property="og:description" content="神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我们只需要找到我们所处位置的梯度，沿着梯度反方向就能找到最快下山的路线。假">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C2.png">
-<meta property="og:updated_time" content="2018-11-25T07:13:29.758Z">
+<meta property="og:updated_time" content="2019-05-20T13:04:44.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="神经网络--反向传播算法">
-<meta name="twitter:description" content="前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。         神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我">
+<meta name="twitter:description" content="神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。        但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我们只需要找到我们所处位置的梯度，沿着梯度反方向就能找到最快下山的路线。假">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/dongyingdepingguo/dongyingdepingguo.github.io/master/2018/05/22/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-%E5%8F%8D%E5%90%91%E4%BC%A0%E6%92%AD%E7%AE%97%E6%B3%95/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C1.png">
 
 
@@ -363,8 +363,7 @@
       
 
       
-        <p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p>
-<font color="blue">前言：乱七八糟的事终于结束了，我只想安安静静的把这一节整理出来。</font>       
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>    
 
 <p>神经网络一般有三层，输入层、隐含层以及输出层。输入值经过隐含层的作用，在输出层输出，其结果会与期望值作比较，这里用代价函数来衡量误差。神经网络的训练过程，按照我的理解就是通过调整权值和偏置，使代价函数降到最小的过程。       </p>
 <p>但是使用什么方法调整那些参数？之前讲过梯度，当我们站在半山腰中寻找下山最快的方向，我们只需要找到我们所处位置的梯度，沿着梯度反方向就能找到最快下山的路线。假设我们站在\((x_0\,,y_0)\)的位置，则该位置的梯度为\((\left. \frac{\partial f}{\partial x} \right|_{x=x_0,y=y_0},\left. \frac{\partial f}{\partial y} \right|_{x=x_0,y=y_0})\)，那么下一刻你需要调整的位置为\((x_0-\left. \frac{\partial f}{\partial x} \right|_{x=x_0,y=y_0},y_0-\left. \frac{\partial f}{\partial y} \right|_{x=x_0,y=y_0})\)。这种方法叫梯度下降法，通过使用这种方法来调整权值和偏置，使代价函数降到最小。       </p>
