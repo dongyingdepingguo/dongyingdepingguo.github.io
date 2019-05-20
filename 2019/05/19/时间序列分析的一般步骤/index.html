@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据分析,python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="一、时间序列的预处理对于一个序列，首先要对它纯随机性和平稳性进行检验，这两个重要的检验称为序列的预处理。根据检验结果可以将序列分为不同的类型，对不同类型的序列会采取不同的分析方法。 对于纯随机序列，又称为白噪声序列，序列的各项之间没有任何相关关系，序列在进行完全无序的随机波动，可以终止对该序列的分析。 对于平稳非白噪声序列，它的均值和方差是常数，现已有一套非常成熟的平稳序列的建模方法。通常是建立一">
+<meta name="keywords" content="数据分析,python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时间序列分析的一般步骤">
+<meta property="og:url" content="http://yoursite.com/2019/05/19/时间序列分析的一般步骤/index.html">
+<meta property="og:site_name" content="冻硬的苹果">
+<meta property="og:description" content="一、时间序列的预处理对于一个序列，首先要对它纯随机性和平稳性进行检验，这两个重要的检验称为序列的预处理。根据检验结果可以将序列分为不同的类型，对不同类型的序列会采取不同的分析方法。 对于纯随机序列，又称为白噪声序列，序列的各项之间没有任何相关关系，序列在进行完全无序的随机波动，可以终止对该序列的分析。 对于平稳非白噪声序列，它的均值和方差是常数，现已有一套非常成熟的平稳序列的建模方法。通常是建立一">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/Users/Mac/Desktop/D盘负载.png">
+<meta property="og:image" content="http://yoursite.com/Users/Mac/Desktop/D盘自相关图.png">
+<meta property="og:image" content="http://yoursite.com/Users/Mac/Desktop/D盘一阶差分自相关图.png">
+<meta property="og:image" content="http://yoursite.com/Users/Mac/Desktop/D盘一阶差分偏自相关图.png">
+<meta property="og:updated_time" content="2019-05-20T12:56:52.440Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="时间序列分析的一般步骤">
+<meta name="twitter:description" content="一、时间序列的预处理对于一个序列，首先要对它纯随机性和平稳性进行检验，这两个重要的检验称为序列的预处理。根据检验结果可以将序列分为不同的类型，对不同类型的序列会采取不同的分析方法。 对于纯随机序列，又称为白噪声序列，序列的各项之间没有任何相关关系，序列在进行完全无序的随机波动，可以终止对该序列的分析。 对于平稳非白噪声序列，它的均值和方差是常数，现已有一套非常成熟的平稳序列的建模方法。通常是建立一">
+<meta name="twitter:image" content="http://yoursite.com/Users/Mac/Desktop/D盘负载.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/19/时间序列分析的一般步骤/"/>
+
+
+
+
+
+  <title>时间序列分析的一般步骤 | 冻硬的苹果</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?608723899f726bbda4571e2884b98a54";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冻硬的苹果</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/19/时间序列分析的一般步骤/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冻硬的苹果">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冻硬的苹果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">时间序列分析的一般步骤</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-19T09:45:49+08:00">
+                2019-05-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="一、时间序列的预处理"><a href="#一、时间序列的预处理" class="headerlink" title="一、时间序列的预处理"></a>一、时间序列的预处理</h2><p>对于一个序列，首先要对它纯随机性和平稳性进行检验，这两个重要的检验称为序列的预处理。根据检验结果可以将序列分为不同的类型，对不同类型的序列会采取不同的分析方法。</p>
+<p>对于纯随机序列，又称为<strong>白噪声序列</strong>，序列的各项之间没有任何相关关系，序列在进行完全无序的随机波动，可以终止对该序列的分析。</p>
+<p>对于平稳非白噪声序列，它的均值和方差是常数，现已有一套非常成熟的平稳序列的建模方法。通常是建立一个线性模型来拟合该序列的发展，借此提取该序列的有用信息。ARMA模型是常用的平稳序列拟合模型。</p>
+<p>对于非平稳序列，由于它的均值和方差不稳定，处理方法一般是将其转变为平稳序列，这样就可以应用有关平稳时间序列的分析方法来进行相应的研究。</p>
+<h3 id="1-纯随机性检验"><a href="#1-纯随机性检验" class="headerlink" title="1.纯随机性检验"></a>1.纯随机性检验</h3><p>如果一个序列是纯随机序列，那么它的序列值之间应该没有任何关系，即满足 $\gamma(k) = 0，k \neq 0$，$\gamma(k) $ 表示滞后 $k$ 阶的自协方差函数，这是一种理论上才会出现的理想状态。</p>
+<p>纯随机性检验也称白噪声检验，一般是构造检验统计量来检验序列的纯随机性，常用的检验统计量有Q统计量、LB统计量，由样本各延迟期数的自相关系数可以计算得到检验统计量，然后计算对应的 $p$ 值，如果 $p$ 值显著大于显著性水平 $\alpha$ ，则表示该序列不能拒绝纯随机的原假设，可以停止对该序列的分析。</p>
+<p>python 中常用的时间序列分析的包是 statsmodels ，用于白噪声检验的是 <a href="http://www.statsmodels.org/devel/generated/statsmodels.stats.diagnostic.acorr_ljungbox.html" target="_blank" rel="noopener">acorr_ljungbox</a> 模块。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">statsmodels.stats.diagnostic.acorr_ljungbox(x, lags=<span class="keyword">None</span>, boxpierce=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">Parameters： x (array_like, <span class="number">1</span>d) – data series, regression residuals when used <span class="keyword">as</span> diagnostic 							test.</span><br><span class="line"></span><br><span class="line">						 lags (<span class="keyword">None</span>, int <span class="keyword">or</span> array_like) – If lags <span class="keyword">is</span> an integer then this <span class="keyword">is</span> taken to be 							the largest lag that <span class="keyword">is</span> included, the test result <span class="keyword">is</span> reported <span class="keyword">for</span> all smaller 						 lag length. If lags <span class="keyword">is</span> a list <span class="keyword">or</span> array, then all lags are included up to the 							 largest lag <span class="keyword">in</span> the list, however only the tests <span class="keyword">for</span> the lags <span class="keyword">in</span> the list are 							 reported. If lags <span class="keyword">is</span> <span class="keyword">None</span>, then the default maxlag <span class="keyword">is</span> <span class="string">'min((nobs // 2 - 2), 							   40)'</span></span><br><span class="line">  </span><br><span class="line">             boxpierce (&#123;<span class="keyword">False</span>, <span class="keyword">True</span>&#125;) – If true, then additional to the results of the 								 Ljung-Box test also the Box-Pierce test results are returned</span><br><span class="line"></span><br><span class="line">Returns:		 lbvalue (float <span class="keyword">or</span> array) – test statistic</span><br><span class="line"></span><br><span class="line">						 pvalue (float <span class="keyword">or</span> array) – p-value based on chi-square distribution</span><br><span class="line"></span><br><span class="line">						 bpvalue ((optional), float <span class="keyword">or</span> array) – test statistic <span class="keyword">for</span> Box-Pierce test</span><br><span class="line"></span><br><span class="line">						 bppvalue ((optional), float <span class="keyword">or</span> array) – p-value based <span class="keyword">for</span> Box-Pierce test on 							 chi-square distribution</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">参数： x--用于检验的序列</span><br><span class="line">			lags--滞后数，可以是整数、列表或数组。整数一般取 int(ln(len(x))),即以e为底序列长的对数取整。</span><br><span class="line">  		boxpierce--如果为true，那么除了Ljung-Box测试的结果之外，还会返回Box-Pierce测试结果。(官方文档这么说，具体没深究。)</span><br><span class="line">    </span><br><span class="line">返回值： lbvalue--测试结果</span><br><span class="line">				pvalue--基于卡方分布的p值</span><br><span class="line">  			bpvalue--Box-Pierce测试的测试统计</span><br><span class="line">    		bppvalue--基于卡方分布的Box-Pierce测试的p值</span><br></pre></td></tr></table></figure>
+<p>以下代码展示使用LB统计量检验原始序列和一阶差分序列是否为白噪声序列。在LB统计量检验中，假设原始序列为白噪声序列，当存在p值大于置信水平时，不能拒绝原假设，即原始序列为白噪声序列。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">change_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line">data = change_data.iloc[:len(change_data)<span class="number">-5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> statsmodels.stats.diagnostic <span class="keyword">import</span> acorr_ljungbox</span><br><span class="line">[lb, p] = acorr_ljungbox(data[<span class="string">'CWXT_DB:184:D'</span>], lags=int(np.log(len(data))))</span><br><span class="line">h = (p &lt; <span class="number">0.05</span>).sum()</span><br><span class="line"><span class="keyword">if</span> h &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'原始序列为非白噪声序列'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'原始序列为白噪声序列'</span>)</span><br><span class="line"></span><br><span class="line">[ld1, p1] = acorr_ljungbox(data[<span class="string">'CWXT_DB:184:C'</span>].diff().dropna(), lags=int(np.log(len(data))))</span><br><span class="line">h1 = (p1 &lt; <span class="number">0.05</span>).sum()</span><br><span class="line"><span class="keyword">if</span> h1 &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'一阶差分序列为非白噪声序列'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'一阶差分序列为白噪声序列'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment">#结果打印</span></span><br><span class="line">原始序列为非白噪声序列</span><br><span class="line">一阶差分序列为白噪声序列</span><br></pre></td></tr></table></figure>
+<h3 id="2-平稳性检验"><a href="#2-平稳性检验" class="headerlink" title="2.平稳性检验"></a>2.平稳性检验</h3><p>什么是平稳序列？如果时间序列 ${X_t, t \in T}$ 在某一常数附近波动且波动范围有限，即有常数均值和常数方差，并且延迟 $k$ 期的序列变量的自协方差和自相关系数是相等的或者说延迟 $k$ 期的序列变量之间的影响程度是一样的，则称 ${X_t, t \in T}$ 为平稳序列。</p>
+<p>对于序列的平稳性检验有两种检验方法，一种是根据时序图和自相关图的特征作出判断的图检验，该方法操作简单、应用广泛，缺点是带有主观性；另一种是构造检验统计量进行检验的方法，目前最常用的是单位根检验。</p>
+<h4 id="2-1时序图检验"><a href="#2-1时序图检验" class="headerlink" title="2.1时序图检验"></a>2.1时序图检验</h4><p>根据平稳时间序列的均值和方差都为常数的性质，平稳序列的时序图显示该序列值始终在一个常数附近随机波动，而且拨动范围有界；如果有明显的趋势性或周期性，那它通常不是平稳序列。下图展示一个磁盘的使用量随时间变化的时序图：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">change_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line">change_data = change_data.set_index(<span class="string">'COLLECTTIME'</span>)</span><br><span class="line">d_data = change_data[<span class="string">'CWXT_DB:184:D'</span>]</span><br><span class="line">x = change_data.index</span><br><span class="line">plt.figure(dpi=<span class="number">1024</span>)</span><br><span class="line">plt.plot(x, d_data, <span class="string">'b'</span>, label=<span class="string">'D disk usage'</span>)</span><br><span class="line">plt.xticks(rotation=<span class="number">45</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line">plt.scatter(x, d_data, <span class="number">10</span>, color=<span class="string">'blue'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/Mac/Desktop/D盘负载.png" alt="D盘负载"></p>
+<h4 id="2-2自相关图检验"><a href="#2-2自相关图检验" class="headerlink" title="2.2自相关图检验"></a>2.2自相关图检验</h4><p>平稳序列具有短期相关性，这个性质表明对平稳序列而言通常只有近期的序列值对现时值的影响比较明显，间隔越远的现实值对现实值的影响越小。随着延迟期数 $k$ 的增加，平稳序列的自相关系数 $\rho_k$ 会比较快的衰减趋向于零，并在零附近随机波动，而非平稳序列的自相关系数衰减的比较慢，这就是利用自相关图进行平稳性检验的标准。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line"><span class="keyword">from</span> statsmodels.graphics.tsaplots <span class="keyword">import</span> plot_acf</span><br><span class="line">plot_acf(data[<span class="string">'CWXT_DB:184:D'</span>])</span><br></pre></td></tr></table></figure>
+<p><img src="/Users/Mac/Desktop/D盘自相关图.png" alt="D盘自相关图"></p>
+<h4 id="2-3单位根检验"><a href="#2-3单位根检验" class="headerlink" title="2.3单位根检验"></a>2.3单位根检验</h4><p>单位根检验是指检验序列中是否存在单位根，如果存在单位根就是非平稳时间序列。在python中常用的单位根检验的工具是 <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.stattools.adfuller.html" target="_blank" rel="noopener">statsmodels.tsa.stattools.adfuller</a> ，即ADF检验。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">statsmodels.tsa.stattools.adfuller(x, maxlag=<span class="keyword">None</span>, regression=<span class="string">'c'</span>, autolag=<span class="string">'AIC'</span>, store=<span class="keyword">False</span>, regresults=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">Parameters:	 x (array_like, <span class="number">1</span>d) – data series</span><br><span class="line">						 maxlag (int) – Maximum lag which <span class="keyword">is</span> included <span class="keyword">in</span> test, default <span class="number">12</span>*																(nobs/<span class="number">100</span>)^&#123;<span class="number">1</span>/<span class="number">4</span>&#125;</span><br><span class="line">						 regression (&#123;<span class="string">'c'</span>,<span class="string">'ct'</span>,<span class="string">'ctt'</span>,<span class="string">'nc'</span>&#125;) –Constant <span class="keyword">and</span> trend order to include <span class="keyword">in</span>  								 regression</span><br><span class="line">								<span class="string">'c'</span> : constant only (default)</span><br><span class="line">								<span class="string">'ct'</span> : constant <span class="keyword">and</span> trend</span><br><span class="line">								<span class="string">'ctt'</span> : constant, <span class="keyword">and</span> linear <span class="keyword">and</span> quadratic trend</span><br><span class="line">								<span class="string">'nc'</span> : no constant, no trend</span><br><span class="line">						autolag (&#123;<span class="string">'AIC'</span>, <span class="string">'BIC'</span>, <span class="string">'t-stat'</span>, <span class="keyword">None</span>&#125;) –</span><br><span class="line">            		<span class="keyword">if</span> <span class="keyword">None</span>, then maxlag lags are used</span><br><span class="line">								<span class="keyword">if</span> <span class="string">'AIC'</span> (default) <span class="keyword">or</span> <span class="string">'BIC'</span>, then the number of lags <span class="keyword">is</span> chosen to minimize 											the corresponding information criterion</span><br><span class="line">								<span class="string">'t-stat'</span> based choice of maxlag. Starts <span class="keyword">with</span> maxlag <span class="keyword">and</span> drops a lag until 											the t-statistic on the last lag length <span class="keyword">is</span> significant using a <span class="number">5</span>%-sized 											test</span><br><span class="line">						store (bool) – If <span class="keyword">True</span>, then a result instance <span class="keyword">is</span> returned additionally to the 									adf statistic. Default <span class="keyword">is</span> <span class="keyword">False</span></span><br><span class="line">						regresults (bool, optional) – If <span class="keyword">True</span>, the full regression results are returned. 									Default <span class="keyword">is</span> <span class="keyword">False</span></span><br><span class="line">Returns:		adf (float) – Test statistic</span><br><span class="line">						pvalue (float) – MacKinnon’s approximate p-value based on MacKinnon (<span class="number">1994</span>, <span class="number">2010</span>)</span><br><span class="line">						usedlag (int) – Number of lags used</span><br><span class="line">						nobs (int) – Number of observations used <span class="keyword">for</span> the ADF regression <span class="keyword">and</span> calculation 									of the critical values</span><br><span class="line">						critical values (dict) – Critical values <span class="keyword">for</span> the test statistic at the <span class="number">1</span>%, <span class="number">5</span>%, 									<span class="keyword">and</span> <span class="number">10</span>% levels. Based on MacKinnon (<span class="number">2010</span>)</span><br><span class="line">						icbest (float) – The maximized information criterion <span class="keyword">if</span> autolag <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>.</span><br><span class="line">						resstore (ResultStore, optional) – A dummy <span class="class"><span class="keyword">class</span> <span class="title">with</span> <span class="title">results</span> <span class="title">attached</span> <span class="title">as</span> 											<span class="title">attributes</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">参数：  <span class="title">x</span> --一维的待分析序列</span></span><br><span class="line"><span class="class">			 <span class="title">maxlag</span> --最大滞后数</span></span><br><span class="line"><span class="class">  		 其他参数没搞明白</span></span><br><span class="line"><span class="class">返回值： <span class="title">adf</span> --测试结果</span></span><br><span class="line"><span class="class">			  <span class="title">pvalue</span> --<span class="title">p</span>值</span></span><br><span class="line"><span class="class">  			<span class="title">usedlag</span> --使用的滞后数</span></span><br><span class="line"><span class="class">        <span class="title">nobs</span> --用于单位根检验的数据个数<span class="params">(猜测滞后数与该值的和应该等于原始序列的长度)</span></span></span><br><span class="line"><span class="class">        <span class="title">critical</span> <span class="title">values</span> --临界值</span></span><br><span class="line"><span class="class">        其他返回值没搞明白</span></span><br></pre></td></tr></table></figure>
+<p>以下代码展示使用ADF检验序列是否存在单位根，如果存在表明序列为非平稳序列，随后对其进行差分运算，直到变为平稳序列。ADF检验的原假设为序列存在单位根，当测试结果小于5%的临界值或者p值小于0.05的显著性水平时表明可以拒绝原假设，小于1%的临界值时极其显著地拒绝原假设。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">change_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line">data = change_data.iloc[:len(change_data) - <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.stattools <span class="keyword">import</span> adfuller <span class="keyword">as</span> ADF</span><br><span class="line"></span><br><span class="line">d = <span class="number">0</span></span><br><span class="line">adf = ADF(data[<span class="string">'CWXT_DB:184:D'</span>])</span><br><span class="line">print(<span class="string">'原始序列单位根检验结果：'</span>)</span><br><span class="line">print(adf)</span><br><span class="line"><span class="keyword">while</span> adf[<span class="number">1</span>] &gt;= <span class="number">0.05</span>:</span><br><span class="line">    d += <span class="number">1</span></span><br><span class="line">    adf = ADF(data[<span class="string">'CWXT_DB:184:C'</span>].diff(d).dropna())</span><br><span class="line">print(<span class="string">'%s阶差分后序列单位根检验结果：'</span> % d)</span><br><span class="line">print(adf)</span><br><span class="line"></span><br><span class="line"><span class="comment">#打印结果</span></span><br><span class="line">原始序列单位根检验结果：</span><br><span class="line">(<span class="number">-2.6460462274942982</span>, <span class="number">0.083848896341219614</span>, <span class="number">0</span>, <span class="number">41</span>, &#123;<span class="string">'1%'</span>: <span class="number">-3.6009833671885199</span>, <span class="string">'5%'</span>: <span class="number">-2.9351348158036012</span>, <span class="string">'10%'</span>: <span class="number">-2.6059629803688282</span>&#125;, <span class="number">958.70113211750595</span>)</span><br><span class="line"><span class="number">1</span>阶差分后序列单位根检验结果：</span><br><span class="line">(<span class="number">-5.6569392821447106</span>, <span class="number">9.5729755923330725e-07</span>, <span class="number">2</span>, <span class="number">38</span>, &#123;<span class="string">'1%'</span>: <span class="number">-3.6155091011809297</span>, <span class="string">'5%'</span>: <span class="number">-2.9412623574865142</span>, <span class="string">'10%'</span>: <span class="number">-2.6091995013850418</span>&#125;, <span class="number">837.33354704864507</span>)</span><br></pre></td></tr></table></figure>
+<p>从结果可以看出，原始序列的检测结果为-2.646，比5%的临界值-2.935要大，且p值为0.0838，比0.05要大，所以不能拒绝原假设，即原始序列存在单位根，是非平稳序列。一阶差分后的序列检测结果为-5.657，比1%的临界值-3.615要小，且p值非常接近0，所以极其显著地拒绝原假设，即一阶差分后的序列不存在单位根，是平稳序列。</p>
+<h2 id="二、建立时间序列模型"><a href="#二、建立时间序列模型" class="headerlink" title="二、建立时间序列模型"></a>二、建立时间序列模型</h2><p>这里只讨论非平稳时间序列模型。对于非平稳时间序列模型，最常见的就是 ARIMA 模型，它是差分运算和 ARMA 模型的组合，其中 ARMA 模型主要用于平稳时间序列。前面的例子已经展示如何通过差分运算将非平稳序列转化为平稳序列，转化后的序列可以使用 ARMA 模型进行拟合。</p>
+<p><strong>ARMA 模型</strong></p>
+<p>具有如下结构的模型称为自回归移动平均模型，简记为 $ARMA(p, q)$ .</p>
+<p>$$x_t=\phi_0+\phi_1x_{t-1}+\phi_2x_{t-2}+…+\phi_px_{t-p}+\varepsilon_t-\theta_1\varepsilon_{t-1}-\theta_2\varepsilon_{t-2}-…-\theta_q\varepsilon_{t-q}$$</p>
+<p>即在 t 时刻的随机变量 $X_t$ 的取值 $x_t$ 是前 p 期 $x_{t-1}, x_{t-2}, … , x_{t-p}$ 和前 q 期 $\varepsilon_{t-1},\varepsilon_{t-2}, …,\varepsilon_{t-q}$ 的多元线性函数，误差项是当期的随机干扰 $\varepsilon_t$，为零均值白噪声序列。认为 $x_t$ 主要是受过去 p 期的序列值和过去 q 期的误差项共同影响。</p>
+<p>接下来就是对模型进行定阶，定阶过程其实就是确定 p 和 q 。有两种方法确定 p 和 q ：</p>
+<p><strong>第一种：人为识别</strong>。观察序列的自相关系数和偏自相关系数，自相关系数显示 p 阶拖尾，偏自相关系数显示 q 阶拖尾，此时的 p 和 q 即是我们要找的。</p>
+<p><img src="/Users/Mac/Desktop/D盘一阶差分自相关图.png" alt="D盘一阶差分自相关图"></p>
+<p><img src="/Users/Mac/Desktop/D盘一阶差分偏自相关图.png" alt="D盘一阶差分偏自相关图"></p>
+<p>如上图中自相关图和偏自相关图，都在一阶后落入阴影区域，即为一阶拖尾，所以此时的 $p=1, q=1$ 。</p>
+<p><strong>第二种：相对最优模型识别</strong>。取一系列 $p, q$ 的取值范围，通常取 0 到序列长的0.1倍，观察所有 $p, q$ 组合的 BIC 信息量，选取信息量最小的那组 $p, q$ 。以下为具体操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">change_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line">data = change_data.iloc[:len(change_data)<span class="number">-5</span>]</span><br><span class="line">data = data.set_index(<span class="string">'COLLECTTIME'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima_model <span class="keyword">import</span> ARIMA</span><br><span class="line"></span><br><span class="line">pmax = int(len(data) / <span class="number">10</span>)</span><br><span class="line">qmax = int(len(data) / <span class="number">10</span>)</span><br><span class="line">bic_matrix = []</span><br><span class="line"><span class="keyword">for</span> p <span class="keyword">in</span> range(pmax):</span><br><span class="line">    tmp = []</span><br><span class="line">    <span class="keyword">for</span> q <span class="keyword">in</span> range(qmax):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            tmp.append(ARIMA(data[<span class="string">'CWXT_DB:184:D'</span>], (p, <span class="number">1</span>, q)).fit().bic)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            tmp.append(<span class="keyword">None</span>)</span><br><span class="line">    bic_matrix.append(tmp)</span><br><span class="line">bic_matrix = pd.DataFrame(bic_matrix)</span><br><span class="line">print(<span class="string">'p, q组合的BIC信息量矩阵：'</span>)</span><br><span class="line">print(bic_matrix)</span><br><span class="line">p, q = bic_matrix.stack().idxmin()</span><br><span class="line">print(<span class="string">'BIC信息量最小的p，q值：'</span>)</span><br><span class="line">print(<span class="string">'p=%s, q=%s'</span> %(p, q))</span><br><span class="line"></span><br><span class="line"><span class="comment">#打印结果</span></span><br><span class="line">p, q组合的BIC信息量矩阵：</span><br><span class="line">             <span class="number">0</span>            <span class="number">1</span>            <span class="number">2</span>            <span class="number">3</span></span><br><span class="line"><span class="number">0</span>  <span class="number">1275.686824</span>  <span class="number">1273.190435</span>  <span class="number">1272.928341</span>  <span class="number">1276.827800</span></span><br><span class="line"><span class="number">1</span>  <span class="number">1276.749128</span>  <span class="number">1271.909634</span>          NaN          NaN</span><br><span class="line"><span class="number">2</span>  <span class="number">1279.694296</span>  <span class="number">1275.602510</span>          NaN  <span class="number">1280.092482</span></span><br><span class="line"><span class="number">3</span>  <span class="number">1278.065999</span>  <span class="number">1278.988595</span>  <span class="number">1282.782535</span>  <span class="number">1285.943494</span></span><br><span class="line">BIC信息量最小的p, q值：</span><br><span class="line">p=<span class="number">1</span>, q=<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>跟第一种结果一致。因为原始序列是非平稳的，此处使用的是 <a href="https://www.statsmodels.org/devel/generated/statsmodels.tsa.arima_model.ARIMA.html" target="_blank" rel="noopener">ARIMA</a> 模型，经过一阶差分后成为平稳序列，因而程序中 ARIMA 模型中第二个参数 $(p, d, q)$ 的 $d = 1$。</p>
+<h2 id="三、模型的检验、预测和评价"><a href="#三、模型的检验、预测和评价" class="headerlink" title="三、模型的检验、预测和评价"></a>三、模型的检验、预测和评价</h2><p>###3.1模型检验</p>
+<p>上一步确定的模型为 $ARIMA(1, 1, 1)$ ，确定后需要检验残差是否为白噪声，如果不是白噪声，说明残差中还存在有用信息，需要修改模型或进一步提取。白噪声检验上面已经说过，就不再赘述了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">change_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line">data = change_data.iloc[:len(change_data) - <span class="number">5</span>] <span class="comment">#最后5行数据不用于训练</span></span><br><span class="line">data = data.set_index(<span class="string">'COLLECTTIME'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima_model <span class="keyword">import</span> ARIMA</span><br><span class="line"><span class="keyword">from</span> statsmodels.stats.diagnostic <span class="keyword">import</span> acorr_ljungbox</span><br><span class="line"></span><br><span class="line">arima = ARIMA(data[<span class="string">'CWXT_DB:184:D'</span>], (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)).fit() <span class="comment">#训练已经确定的模型</span></span><br><span class="line">x_predict = arima.predict(typ=<span class="string">'levels'</span>)</span><br><span class="line">pred_error = (x_predict - data[<span class="string">'CWXT_DB:184:D'</span>]).dropna() <span class="comment">#残差</span></span><br><span class="line">lb, p = acorr_ljungbox(pred_error, lags=int(np.log(len(pred_error)))) <span class="comment">#对残差进行白噪声检验</span></span><br><span class="line">h = (p &lt; <span class="number">0.05</span>).sum()</span><br><span class="line"><span class="keyword">if</span> h &gt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">'模型ARIMA(1, 1, 1)的残差不符合白噪声检验'</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    print(<span class="string">'模型ARIMA(1, 1, 1)的残差符合白噪声检验'</span>)</span><br><span class="line">    </span><br><span class="line"><span class="comment"># 打印结果</span></span><br><span class="line">模型ARIMA(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)的残差符合白噪声检验</span><br></pre></td></tr></table></figure>
+<p>###3.2模型预测</p>
+<p>然后使用该模型进行预测。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">change_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/change_discdata.xls'</span>)</span><br><span class="line">data = change_data.iloc[:len(change_data) - <span class="number">5</span>]</span><br><span class="line">data = data.set_index(<span class="string">'COLLECTTIME'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima_model <span class="keyword">import</span> ARIMA</span><br><span class="line"><span class="keyword">from</span> statsmodels.stats.diagnostic <span class="keyword">import</span> acorr_ljungbox</span><br><span class="line"></span><br><span class="line">arima = ARIMA(data[<span class="string">'CWXT_DB:184:D'</span>], (<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)).fit() <span class="comment">#模型训练</span></span><br><span class="line">predict_value = arima.predict(<span class="string">'2014-11-12'</span>, <span class="string">'2014-11-16'</span>, dynamic=<span class="string">'True'</span>, typ=<span class="string">'levels'</span>) <span class="comment">#模型预测</span></span><br><span class="line">true_value = change_data.iloc[len(change_data) - <span class="number">5</span>:].set_index(<span class="string">'COLLECTTIME'</span>)[<span class="string">'CWXT_DB:184:D'</span>]</span><br><span class="line">pre_data = pd.concat([true_value, predict_value], axis=<span class="number">1</span>)</span><br><span class="line">pre_data.columns = [<span class="string">'true_value_D'</span>, <span class="string">'predict_value_D'</span>]</span><br><span class="line">print(pre_data)</span><br><span class="line"><span class="comment">#pre_data.to_excel('/Users/Mac/Desktop/pre_data.xls')</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#打印结果           </span></span><br><span class="line">COLLECTTIME   true_value_D   predict_value_D                        </span><br><span class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-12</span>    <span class="number">87249335.55</span>     <span class="number">8.741129e+07</span></span><br><span class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-13</span>    <span class="number">86986142.20</span>     <span class="number">8.734455e+07</span></span><br><span class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-14</span>    <span class="number">86678240.00</span>     <span class="number">8.739133e+07</span></span><br><span class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-15</span>    <span class="number">89766600.00</span>     <span class="number">8.748490e+07</span></span><br><span class="line"><span class="number">2014</span><span class="number">-11</span><span class="number">-16</span>    <span class="number">89377527.25</span>     <span class="number">8.759774e+07</span></span><br></pre></td></tr></table></figure>
+<h3 id="3-3模型评价"><a href="#3-3模型评价" class="headerlink" title="3.3模型评价"></a>3.3模型评价</h3><p>对该模型采用3个统计量指标进行评价：平均绝对误差、均方根误差和平均绝对百分误差。由于实验数据是磁盘容量大小，原数据采用kb为单位，模型评价部分将其转化为Gb为单位。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line">pre_data = pd.read_excel(<span class="string">'/Users/Mac/Desktop/pre_data.xls'</span>)</span><br><span class="line">pre_value = pre_data[<span class="string">'predict_value_D'</span>]</span><br><span class="line">true_value = pre_data[<span class="string">'true_value_D'</span>]</span><br><span class="line">change_value = <span class="number">1024</span>*<span class="number">1024</span></span><br><span class="line"></span><br><span class="line">abs_ = (pre_value - true_value).abs()</span><br><span class="line">mae_ = abs_.mean()</span><br><span class="line">rmse_ = ((abs_**<span class="number">2</span>).mean())**<span class="number">0.5</span></span><br><span class="line">mape_ = (abs_/true_value).mean()</span><br><span class="line"></span><br><span class="line">print(<span class="string">'平均绝对误差：%0.4f.\n均方根误差：%0.4f.\n平均绝对百分误差：%0.4f.'</span>%(mae_/change_value, rmse_/change_value, mape_*<span class="number">100</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#打印结果</span></span><br><span class="line">平均绝对误差：<span class="number">1.0094</span>.</span><br><span class="line">均方根误差：<span class="number">1.2831</span>.</span><br><span class="line">平均绝对百分误差：<span class="number">1.1901</span>.</span><br></pre></td></tr></table></figure>
+<h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>时间序列分析的整个过程大致分为以下几步：</p>
+<p>1.首先进行平稳性检验，如果序列不平稳则对序列进行差分运算，将其转化为平稳序列。</p>
+<p>2.对于转化后的平稳序列采用 ARIMA 模型拟合并利用 BIC 信息准则确定 $p, q$ ，最终确定 $ARIMA(p, d, q)$ 模型。</p>
+<p>3.对确定后的模型残差进行白噪声检验，如果模型通过检验，采用模型进行预测，并对预测结果进行评价，如果模型没通过白噪声检验，返回第2步重新优化模型。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据分析/" rel="tag"># 数据分析</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/05/爬个壁纸/" rel="next" title="爬个壁纸">
+                <i class="fa fa-chevron-left"></i> 爬个壁纸
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="冻硬的苹果" />
+            
+              <p class="site-author-name" itemprop="name">冻硬的苹果</p>
+              <p class="site-description motion-element" itemprop="description">企者不立 跨者不行</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、时间序列的预处理"><span class="nav-number">1.</span> <span class="nav-text">一、时间序列的预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-纯随机性检验"><span class="nav-number">1.1.</span> <span class="nav-text">1.纯随机性检验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-平稳性检验"><span class="nav-number">1.2.</span> <span class="nav-text">2.平稳性检验</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1时序图检验"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1时序图检验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2自相关图检验"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2自相关图检验</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3单位根检验"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3单位根检验</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、建立时间序列模型"><span class="nav-number">2.</span> <span class="nav-text">二、建立时间序列模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、模型的检验、预测和评价"><span class="nav-number">3.</span> <span class="nav-text">三、模型的检验、预测和评价</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3模型评价"><span class="nav-number">3.1.</span> <span class="nav-text">3.3模型评价</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、总结"><span class="nav-number">4.</span> <span class="nav-text">四、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冻硬的苹果</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz',
+        appKey: 'dQHka3SAsHH77kdTFfwMPx6U',
+        placeholder: '欢迎交流',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
