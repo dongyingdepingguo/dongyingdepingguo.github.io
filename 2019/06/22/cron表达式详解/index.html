@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="crontab," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="企者不立 跨者不行">
+<meta name="description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
+<meta name="keywords" content="crontab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cron表达式详解">
 <meta property="og:url" content="http://yoursite.com/2019/06/22/cron表达式详解/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="企者不立 跨者不行">
+<meta property="og:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-22T07:20:27.777Z">
+<meta property="og:updated_time" content="2019-06-22T09:36:10.498Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cron表达式详解">
-<meta name="twitter:description" content="企者不立 跨者不行">
+<meta name="twitter:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
 
 
 
@@ -360,7 +361,90 @@
       
 
       
-        
+        <h2 id="Cron简介"><a href="#Cron简介" class="headerlink" title="Cron简介"></a>Cron简介</h2><p><code>crontab</code> 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。</p>
+<p>​            </p>
+<h2 id="Cron-表达式"><a href="#Cron-表达式" class="headerlink" title="Cron 表达式"></a>Cron 表达式</h2><p><code>cron</code> 表达式共有 7 个字段，包括 <code>Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year</code></p>
+<table>
+<thead>
+<tr>
+<th>Seconds</th>
+<th>Minutes</th>
+<th>Hours</th>
+<th>Day of mouth</th>
+<th>Mouth</th>
+<th>Day of week</th>
+<th>[Year]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>秒</td>
+<td>分</td>
+<td>时</td>
+<td>天</td>
+<td>月</td>
+<td>周</td>
+<td>[年]</td>
+</tr>
+</tbody>
+</table>
+<p>其中  <code>Year</code> 是可选的。</p>
+<p>​        </p>
+<h3 id="各字段的允许值及允许字符"><a href="#各字段的允许值及允许字符" class="headerlink" title="各字段的允许值及允许字符"></a>各字段的允许值及允许字符</h3><table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>允许值</th>
+<th>允许的特殊字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Seconds</td>
+<td>0-59</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>Minutes</td>
+<td>0-59</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>Hours</td>
+<td>0-23</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>Day of mouth</td>
+<td>1-31</td>
+<td>, - * / ? L W</td>
+</tr>
+<tr>
+<td>Mouth</td>
+<td>1-12 or JAN-DEC</td>
+<td>, - * /</td>
+</tr>
+<tr>
+<td>Day of week</td>
+<td>1-7 or SUN-SAT(1表示星期天，2表示星期一，… )</td>
+<td>, - * / ? L #</td>
+</tr>
+<tr>
+<td>Year</td>
+<td>empty（允许为空）, 1970-2099</td>
+<td>, - * /</td>
+</tr>
+</tbody>
+</table>
+<h3 id="特殊字符的含义"><a href="#特殊字符的含义" class="headerlink" title="特殊字符的含义"></a>特殊字符的含义</h3><p><strong>*</strong> ：匹配该字段允许的任意值，如果该字符在秒的位置处，表示每秒都会触发事件</p>
+<p><strong>-</strong> ：表示范围，如果在分钟的位置处使用 5-20，即从第 5 分钟到第 20 分钟每分钟触发一次</p>
+<p><strong>/</strong> ：表示触发的起始时间和间隔时间，如果在分钟位置使用 5/20 ，即从第 5 分钟开始每隔 20 分钟触发一次</p>
+<p><strong>,</strong> ：表示列出枚举值，如果在分钟位置使用 5, 20 ，即在第 5 和第 20 分钟各触发一次</p>
+<p><strong>?</strong> ：只能用在 Day of mouth 和 Day of week 字段中，表示忽略任意值，因为这两个字段值可能会发生冲突，当其中一个值被指定后，需要忽略另一个来避免冲突。</p>
+<p><strong>L (last)</strong> ：表示最后，在 Day of mouth 字段中表示”这个月最后一天”，在 Day of week 字段如果配合数字使用 ，如5L，表示”该月的最后一个星期四”</p>
+<p><strong>W (weekday)</strong> ：工作日，表示最接近指定天的工作日(周一到周五)，比如 15W，指最近接本月第15天的工作日，如果那天是周六，则在那周五即前一天触发事件，如果那天是周日，则在下周周一触发事件，如果那天是在周一到周五的范围内，则在当天触发。</p>
+<p><strong>#</strong> ：只能用在 Day of week 字段中，表示该月的第几个周几，如 6#3 表示第3个周五(3 表示第 3 个，6 表示周五)，如果指定日期不存在，事件不会触发。</p>
+
       
     </div>
     
@@ -374,6 +458,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/crontab/" rel="tag"># crontab</a>
+          
+        </div>
       
 
       
@@ -440,8 +530,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -482,7 +581,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -505,6 +604,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron简介"><span class="nav-number">1.</span> <span class="nav-text">Cron简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron-表达式"><span class="nav-number">2.</span> <span class="nav-text">Cron 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各字段的允许值及允许字符"><span class="nav-number">2.1.</span> <span class="nav-text">各字段的允许值及允许字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊字符的含义"><span class="nav-number">2.2.</span> <span class="nav-text">特殊字符的含义</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
