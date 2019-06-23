@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="冻硬的苹果">
 <meta property="og:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year    Seco">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-23T02:20:50.924Z">
+<meta property="og:updated_time" content="2019-06-23T02:22:32.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cron表达式详解">
 <meta name="twitter:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year    Seco">
@@ -441,8 +441,7 @@
 <p><strong>?</strong> ：只能用在 Day of mouth 和 Day of week 字段中，表示忽略任意值，因为这两个字段值可能会发生冲突，当其中一个值被指定后，需要忽略另一个来避免冲突。</p>
 <p><strong>L (last)</strong> ：表示最后，在 Day of mouth 字段中表示”这个月最后一天”，在 Day of week 字段如果配合数字使用 ，如5L，表示”该月的最后一个星期四”</p>
 <p><strong>W (weekday)</strong> ：工作日，表示最接近指定天的工作日(周一到周五)，比如 15W，指最近接本月第15天的工作日，如果那天是周六，则在那周五即前一天触发事件，如果那天是周日，则在下周周一触发事件，如果那天是在周一到周五的范围内，则在当天触发。</p>
-<p><strong>#</strong> ：只能用在 Day of week 字段中，表示该月的第几个周几，如 6#3 表示第3个周五(3 表示第 3 个，6 表示周五)，如果指定日期不存在，事件不会触发。</p>
-<p>​            </p>
+<p><strong>#</strong> ：只能用在 Day of week 字段中，表示该月的第几个周几，如 6#3 表示第3个周五(3 表示第 3 个，6 表示周五)，如果指定日期不存在，事件不会触发。            </p>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><table>
 <thead>
 <tr>
