@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
+<meta name="description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year    Seco">
 <meta name="keywords" content="crontab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cron表达式详解">
 <meta property="og:url" content="http://yoursite.com/2019/06/22/cron表达式详解/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
+<meta property="og:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year    Seco">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-23T02:16:51.350Z">
+<meta property="og:updated_time" content="2019-06-23T02:20:50.924Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cron表达式详解">
-<meta name="twitter:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
+<meta name="twitter:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year    Seco">
 
 
 
@@ -362,7 +362,6 @@
 
       
         <h2 id="Cron简介"><a href="#Cron简介" class="headerlink" title="Cron简介"></a>Cron简介</h2><p><code>crontab</code> 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。</p>
-<p>​            </p>
 <h2 id="Cron-表达式"><a href="#Cron-表达式" class="headerlink" title="Cron 表达式"></a>Cron 表达式</h2><p><code>cron</code> 表达式共有 7 个字段，包括 <code>Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week, Year</code></p>
 <table>
 <thead>
@@ -389,7 +388,6 @@
 </tbody>
 </table>
 <p>其中  <code>Year</code> 是可选的。</p>
-<p>​        </p>
 <h3 id="各字段的允许值及允许字符"><a href="#各字段的允许值及允许字符" class="headerlink" title="各字段的允许值及允许字符"></a>各字段的允许值及允许字符</h3><table>
 <thead>
 <tr>
@@ -454,23 +452,23 @@
 </thead>
 <tbody>
 <tr>
-<td><code>“0 0 12 <em> </em> ?”</code></td>
+<td><code>&quot;0 0 12 * * ?&quot;</code></td>
 <td>每天中午12点触发</td>
 </tr>
 <tr>
-<td><code>“0 15 10 ? <em> </em>“</code></td>
+<td><code>&quot;0 15 10 ? * *&quot;</code></td>
 <td>每天上午10:15触发</td>
 </tr>
 <tr>
-<td><code>“0 15 10 <em> </em> ?”</code></td>
+<td><code>&quot;0 15 10 * * ?&quot;</code></td>
 <td>每天上午10:15触发</td>
 </tr>
 <tr>
-<td><code>“0 15 10 <em> </em> ? *”</code></td>
+<td><code>&quot;0 15 10 * * ? *&quot;</code></td>
 <td>每天上午10:15触发</td>
 </tr>
 <tr>
-<td><code>“0 15 10 <em> </em> ? 2005”</code></td>
+<td><code>&quot;0 15 10 * * ? 2005&quot;</code></td>
 <td>2005年的每天上午10:15触发</td>
 </tr>
 <tr>
