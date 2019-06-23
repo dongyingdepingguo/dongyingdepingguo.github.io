@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="冻硬的苹果">
 <meta property="og:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-22T09:36:10.498Z">
+<meta property="og:updated_time" content="2019-06-23T02:16:51.350Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cron表达式详解">
 <meta name="twitter:description" content="Cron简介crontab 命令常见于 Unix 和类 Unix 的操作系统中，在 Java 中有一个名为 Quartz 的开源作业调度框架的功能与之类似，它们用来定义时间规则的corn表达式很相似。 ​             Cron 表达式cron 表达式共有 7 个字段，包括 Seconds, Minutes, Hours, Day of mouth, Mouth, Day of week">
@@ -444,6 +444,86 @@
 <p><strong>L (last)</strong> ：表示最后，在 Day of mouth 字段中表示”这个月最后一天”，在 Day of week 字段如果配合数字使用 ，如5L，表示”该月的最后一个星期四”</p>
 <p><strong>W (weekday)</strong> ：工作日，表示最接近指定天的工作日(周一到周五)，比如 15W，指最近接本月第15天的工作日，如果那天是周六，则在那周五即前一天触发事件，如果那天是周日，则在下周周一触发事件，如果那天是在周一到周五的范围内，则在当天触发。</p>
 <p><strong>#</strong> ：只能用在 Day of week 字段中，表示该月的第几个周几，如 6#3 表示第3个周五(3 表示第 3 个，6 表示周五)，如果指定日期不存在，事件不会触发。</p>
+<p>​            </p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><table>
+<thead>
+<tr>
+<th>表达式</th>
+<th>意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>“0 0 12 <em> </em> ?”</code></td>
+<td>每天中午12点触发</td>
+</tr>
+<tr>
+<td><code>“0 15 10 ? <em> </em>“</code></td>
+<td>每天上午10:15触发</td>
+</tr>
+<tr>
+<td><code>“0 15 10 <em> </em> ?”</code></td>
+<td>每天上午10:15触发</td>
+</tr>
+<tr>
+<td><code>“0 15 10 <em> </em> ? *”</code></td>
+<td>每天上午10:15触发</td>
+</tr>
+<tr>
+<td><code>“0 15 10 <em> </em> ? 2005”</code></td>
+<td>2005年的每天上午10:15触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 * 14 * * ?&quot;</code></td>
+<td>在每天下午2点到下午2:59期间的每1分钟触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 0/5 14 * * ?&quot;</code></td>
+<td>在每天下午2点到下午2:55期间的每5分钟触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 0/5 14,18 * * ?&quot;</code></td>
+<td>在每天下午2点到2:55期间和下午6点到6:55期间的每 5分钟触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 0-5 14 * * ?&quot;</code></td>
+<td>在每天下午2点到下午2:05期间的每1分钟触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 10,44 14 ? 3 WED&quot;</code></td>
+<td>每年三月的星期三的下午2:10和2:44触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 15 10 ? * MON-FRI&quot;</code></td>
+<td>周一至周五的上午10:15触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 15 10 15 * ?&quot;</code></td>
+<td>每月15日上午10:15触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 15 10 L * ?&quot;</code></td>
+<td>每月最后一日的上午10:15触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 15 10 ? * 6L 2002-2005&quot;</code></td>
+<td>2002年至2005年的每月的最后一个星期五上午 10:15触发</td>
+</tr>
+<tr>
+<td><code>&quot;0 15 10 ? * 6#3&quot;</code></td>
+<td>每月的第三个星期五上午10:15触发</td>
+</tr>
+</tbody>
+</table>
+<p>​          </p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><ol>
+<li><p><a href="http://www.voidcn.com/article/p-dwwkepmc-bmk.html" target="_blank" rel="noopener">spring cron-Expression 与linux crontab 的配置参数含义</a></p>
+</li>
+<li><p><a href="https://www.cnblogs.com/linjiqin/p/3178452.html" target="_blank" rel="noopener">cron表达式详解</a></p>
+</li>
+<li><p><a href="https://www.izhangheng.com/spring-quartz-cron-expression" target="_blank" rel="noopener">详解Quartz定时任务框架中的Cron时间表达式</a></p>
+</li>
+</ol>
 
       
     </div>
@@ -614,7 +694,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron简介"><span class="nav-number">1.</span> <span class="nav-text">Cron简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron-表达式"><span class="nav-number">2.</span> <span class="nav-text">Cron 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各字段的允许值及允许字符"><span class="nav-number">2.1.</span> <span class="nav-text">各字段的允许值及允许字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊字符的含义"><span class="nav-number">2.2.</span> <span class="nav-text">特殊字符的含义</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron简介"><span class="nav-number">1.</span> <span class="nav-text">Cron简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cron-表达式"><span class="nav-number">2.</span> <span class="nav-text">Cron 表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#各字段的允许值及允许字符"><span class="nav-number">2.1.</span> <span class="nav-text">各字段的允许值及允许字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊字符的含义"><span class="nav-number">2.2.</span> <span class="nav-text">特殊字符的含义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-number">2.3.</span> <span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文章"><span class="nav-number">3.</span> <span class="nav-text">参考文章</span></a></li></ol></div>
             
 
           </div>
