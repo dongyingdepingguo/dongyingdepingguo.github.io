@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="shell," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是shell？shell 的中文含义是壳，与 Kernel （核）对应。 早期计算机系统没有图形界面，要想操作计算机非常困难，需要记忆大量的命令，那个时候的计算机只有专业人员才能使用。 后来，为了方便非专业人员使用计算机，人们开发了图形界面工具以及命令行工具，这些工具的普及把人们从繁琐复杂命令中解脱出来，计算机也从高端实验室进入了千家万户。 不管是图形界面还是命令行，它们的目的都是一样的，都是">
+<meta name="keywords" content="shell">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初识shell">
+<meta property="og:url" content="http://yoursite.com/2019/08/23/初识shell/index.html">
+<meta property="og:site_name" content="冻硬的苹果">
+<meta property="og:description" content="什么是shell？shell 的中文含义是壳，与 Kernel （核）对应。 早期计算机系统没有图形界面，要想操作计算机非常困难，需要记忆大量的命令，那个时候的计算机只有专业人员才能使用。 后来，为了方便非专业人员使用计算机，人们开发了图形界面工具以及命令行工具，这些工具的普及把人们从繁琐复杂命令中解脱出来，计算机也从高端实验室进入了千家万户。 不管是图形界面还是命令行，它们的目的都是一样的，都是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="c:/Users/海风教育/AppData/Roaming/Typora/typora-user-images/1565754740334.png">
+<meta property="og:image" content="c:/Users/海风教育/AppData/Roaming/Typora/typora-user-images/1565754455208.png">
+<meta property="og:image" content="c:/Users/海风教育/AppData/Roaming/Typora/typora-user-images/1565754570074.png">
+<meta property="og:image" content="c:/Users/海风教育/Desktop/带我飞.gif">
+<meta property="og:updated_time" content="2019-08-23T12:58:02.359Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初识shell">
+<meta name="twitter:description" content="什么是shell？shell 的中文含义是壳，与 Kernel （核）对应。 早期计算机系统没有图形界面，要想操作计算机非常困难，需要记忆大量的命令，那个时候的计算机只有专业人员才能使用。 后来，为了方便非专业人员使用计算机，人们开发了图形界面工具以及命令行工具，这些工具的普及把人们从繁琐复杂命令中解脱出来，计算机也从高端实验室进入了千家万户。 不管是图形界面还是命令行，它们的目的都是一样的，都是">
+<meta name="twitter:image" content="c:/Users/海风教育/AppData/Roaming/Typora/typora-user-images/1565754740334.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/23/初识shell/"/>
+
+
+
+
+
+  <title>初识shell | 冻硬的苹果</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?608723899f726bbda4571e2884b98a54";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">冻硬的苹果</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-message">
+          <a href="/message/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            留言
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/初识shell/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="冻硬的苹果">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="冻硬的苹果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">初识shell</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-23T20:55:43+08:00">
+                2019-08-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术篇/" itemprop="url" rel="index">
+                    <span itemprop="name">技术篇</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是shell？"><a href="#什么是shell？" class="headerlink" title="什么是shell？"></a>什么是shell？</h3><p>shell 的中文含义是壳，与 Kernel （核）对应。</p>
+<p>早期计算机系统没有图形界面，要想操作计算机非常困难，需要记忆大量的命令，那个时候的计算机只有专业人员才能使用。</p>
+<p>后来，为了方便非专业人员使用计算机，人们开发了图形界面工具以及命令行工具，这些工具的普及把人们从繁琐复杂命令中解脱出来，计算机也从高端实验室进入了千家万户。</p>
+<p>不管是图形界面还是命令行，它们的目的都是一样的，都是让用户来控制计算机。然而，真正能控制计算机硬件的只有内核（Kernel ），但出于安全、复杂、繁琐的考虑，用户不能直接接触内核，因此，需要在用户和内核之间需要设置一个中间层对用户操作进行代理，让用户间接操控内核，图形界面和命令行就是这个中间层。在图形界面中我们通过点点点的方式来控制计算机，在命令行中以各种命令来控制。</p>
+<p>在 Linux 系统中，这个命令行工具叫 shell ，套在核外面的一层壳。</p>
+<p><strong>shell 本身是个应用程序（壳程序），它连接了用户和 Linux 内核，让用户能够更加高效、安全、低成本地的使用 Linux 内核，这就是 shell 本质。</strong></p>
+<h3 id="shell-的种类"><a href="#shell-的种类" class="headerlink" title="shell 的种类"></a>shell 的种类</h3><p>与Windows、Mac OS 不一样，它们由一家公司开发，核心软件和基础库都由一家公司做决定，容易形成统一标准，一般不会开发多款功能类似的软件。但 Linux 不是这样的，它由不同的组织机构共同开发，不同的组织机构为了发展自己的 Linux 分支可能会开发出功能类似的软件，shell 就是这样一款软件。不同的组织机构开发的不同 shell 各有所长，常见的 shell 有 sh、bash、csh、tcsh、ash等。</p>
+<p><strong>sh</strong> ：sh 的全称是 Bourne shell，由 AT&amp;T 公司的 Steve Bourne 开发，为了纪念他，就以他的名字命名了。这款 shell 是 UNIX 上的标准 shell，也是第一个流行的 shell。</p>
+<p><strong>csh</strong> ： csh 是 sh 之后另一个广为流传的 shell，这款 shell 的语法有点类似 C 语言，所以才得名 C shell，简称 csh。它的设计者 Bill Joy 同时也是 vi 编辑器的开发者。</p>
+<p><strong>bash</strong> ： bash 全称 Bourne Again shell，是 Linux 的默认 shell 。</p>
+<p><strong>ash</strong> ： ash 是一款简单的轻量级 shell，占用资源少，适合运行低内存环境，与 bash 完全兼容。</p>
+<h3 id="执行第一个-shell-脚本"><a href="#执行第一个-shell-脚本" class="headerlink" title="执行第一个 shell 脚本"></a>执行第一个 shell 脚本</h3><p>先编写第一个 shell 脚本 test.sh。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line"><span class="meta">#</span>这是一个shell测试文件</span><br><span class="line">echo "hello world"</span><br></pre></td></tr></table></figure>
+<p>这个脚本中，第一行的 #! 是一个约定的标记，告诉系统这个脚本需要什么解释器来执行，以及解释器的位置在哪里；第二行 # 开头表示注释；第三行的 echo 命令向标准输出文件输出文本。</p>
+<p>下面我们来执行一下这个小脚本。在脚本所在位置打开 cmder ，输入 bash ，进入 bash 界面，输入 <code>./test.sh </code> 执行脚本，接下来就可以看到输出。</p>
+<p><img src="C:\Users\海风教育\AppData\Roaming\Typora\typora-user-images\1565754740334.png" alt="1565754740334"></p>
+<p>在一些参考文章中，执行前需要使用命令 <code>chmod +x ./test.sh </code> 添加执行权限，但我在 cmder 中执行时不用添加也能执行。</p>
+<p>上图中 <code>./ </code> 表示当前目录，整条命令的意思是执行当前目录下的 test.sh 脚本。如果不写<code>./</code>，Linux 会到系统路径（由 PATH 环境变量指定）下查找 test.sh，而系统路径下显然不存在这个脚本，所以会执行失败。</p>
+<p>此外，还可以使用 <code>source test.sh</code> 来运行这个脚本。</p>
+<p><img src="C:\Users\海风教育\AppData\Roaming\Typora\typora-user-images\1565754455208.png" alt="1565754455208"></p>
+<p>或者 <code>. test.sh</code> （注意点和文件之间有空格）</p>
+<p><img src="C:\Users\海风教育\AppData\Roaming\Typora\typora-user-images\1565754570074.png" alt="1565754570074"></p>
+<p>以上两种方法等价，<code>source</code>  是 Shell 内置命令的一种，它会读取脚本文件中的代码，并依次执行所有语句。你也可以理解为，<code>source</code>  命令会强制执行脚本文件中的全部命令，而忽略脚本文件的权限。其中 <code>. test.sh</code> 是它的简写。</p>
+<h3 id="执行第二个-shell-脚本"><a href="#执行第二个-shell-脚本" class="headerlink" title="执行第二个 shell 脚本"></a>执行第二个 shell 脚本</h3><p>再写一个 shell 脚本 test2.sh：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/bash</span><br><span class="line">echo "What is your name?"</span><br><span class="line">read name</span><br><span class="line">echo "Hello, $name"   #注意双引号</span><br></pre></td></tr></table></figure>
+<p>从第三行开始说起，<code>read</code> 命令用来从标准输入文件（Standard Input，stdin，一般就是指键盘）读取用户输入的数据。所以这行代码的意义是读取输入内容并赋值给 <code>name</code> ，第四行表示输出变量内容，变量前要加 $ 。</p>
+<p><img src="C:\Users\海风教育\Desktop\带我飞.gif" alt="带我飞"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/shell/" rel="tag"># shell</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/23/PEP8-Python编码风格指南/" rel="next" title="PEP8 Python编码风格指南">
+                <i class="fa fa-chevron-left"></i> PEP8 Python编码风格指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/23/grep介绍/" rel="prev" title="grep介绍">
+                grep介绍 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.gif"
+                alt="冻硬的苹果" />
+            
+              <p class="site-author-name" itemprop="name">冻硬的苹果</p>
+              <p class="site-description motion-element" itemprop="description">企者不立 跨者不行</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是shell？"><span class="nav-number">1.</span> <span class="nav-text">什么是shell？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shell-的种类"><span class="nav-number">2.</span> <span class="nav-text">shell 的种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行第一个-shell-脚本"><span class="nav-number">3.</span> <span class="nav-text">执行第一个 shell 脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#执行第二个-shell-脚本"><span class="nav-number">4.</span> <span class="nav-text">执行第二个 shell 脚本</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">冻硬的苹果</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script src="/js/src/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: '7c2auPjH1ttl41MF8PwXxaoi-gzGzoHsz',
+        appKey: 'dQHka3SAsHH77kdTFfwMPx6U',
+        placeholder: '欢迎交流',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
