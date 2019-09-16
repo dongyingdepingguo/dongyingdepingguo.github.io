@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="##1. 安装ssh 连接 VPS，进入后输入以下三条命令：123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh chmod +x shadowsocks-all.sh">
+<meta name="description" content="1. 安装ssh 连接 VPS，进入后输入以下三条命令：123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh chmod +x shadowsocks-all.sh ./">
 <meta name="keywords" content="SSR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSR服务端安装及配置">
 <meta property="og:url" content="http://yoursite.com/2019/09/16/SSR服务端安装及配置/index.html">
 <meta property="og:site_name" content="冻硬的苹果">
-<meta property="og:description" content="##1. 安装ssh 连接 VPS，进入后输入以下三条命令：123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh chmod +x shadowsocks-all.sh">
+<meta property="og:description" content="1. 安装ssh 连接 VPS，进入后输入以下三条命令：123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh chmod +x shadowsocks-all.sh ./">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-16T13:07:10.822Z">
+<meta property="og:updated_time" content="2019-09-16T13:12:03.828Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SSR服务端安装及配置">
-<meta name="twitter:description" content="##1. 安装ssh 连接 VPS，进入后输入以下三条命令：123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh chmod +x shadowsocks-all.sh">
+<meta name="twitter:description" content="1. 安装ssh 连接 VPS，进入后输入以下三条命令：123wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh chmod +x shadowsocks-all.sh ./">
 
 
 
@@ -361,7 +361,7 @@
       
 
       
-        <p>##1. 安装<br>ssh 连接 VPS，进入后输入以下三条命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh </span><br><span class="line">chmod +x shadowsocks-all.sh </span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>   </p>
+        <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><p>ssh 连接 VPS，进入后输入以下三条命令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget --no-check-certificate -O shadowsocks-all.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-all.sh </span><br><span class="line">chmod +x shadowsocks-all.sh </span><br><span class="line">./shadowsocks-all.sh 2&gt;&amp;1 | tee shadowsocks-all.log</span><br></pre></td></tr></table></figure>   </p>
 <p>然后会有提示选择哪个版本，输入2回车，选择SSR安装。   </p>
 <p>接下来会提示设置SSR密码，输入密码后回车，如果直接回车会使用默认密码，不建议。     </p>
 <p>然后选择服务器端口，可以自己设置，也可以默认回车。   </p>
@@ -369,7 +369,7 @@
 <p>最后两项是协议和混淆方式，都默认回车。   </p>
 <p>上面的参数完成后，按任意键开始安装。安装结束后，会有安装成功的提示，并且会打印出之前设置的各项参数，在使用客户端连接时会用到。    </p>
 <p>这些都结束后输入reboot重启系统，SSR也会自动重启。   </p>
-<p>##2.配置<br>如果需要更改SSR的配置参数，可以修改配置文件，位置在 /etc/shadowsocks-r/config.json<br>修改完后需要重启SSR，SSR的常用命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">启动SSR：</span><br><span class="line">/etc/init.d/shadowsocks-r start</span><br><span class="line">退出SSR：</span><br><span class="line">/etc/init.d/shadowsocks-r stop</span><br><span class="line">重启SSR：</span><br><span class="line">/etc/init.d/shadowsocks-r restart</span><br><span class="line">SSR状态：</span><br><span class="line">/etc/init.d/shadowsocks-r status</span><br><span class="line">卸载SSR：</span><br><span class="line">./shadowsocks-all.sh uninstall</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-配置"><a href="#2-配置" class="headerlink" title="2.配置"></a>2.配置</h2><p>如果需要更改SSR的配置参数，可以修改配置文件，位置在 /etc/shadowsocks-r/config.json<br>修改完后需要重启SSR，SSR的常用命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">启动SSR：</span><br><span class="line">/etc/init.d/shadowsocks-r start</span><br><span class="line">退出SSR：</span><br><span class="line">/etc/init.d/shadowsocks-r stop</span><br><span class="line">重启SSR：</span><br><span class="line">/etc/init.d/shadowsocks-r restart</span><br><span class="line">SSR状态：</span><br><span class="line">/etc/init.d/shadowsocks-r status</span><br><span class="line">卸载SSR：</span><br><span class="line">./shadowsocks-all.sh uninstall</span><br></pre></td></tr></table></figure></p>
 <p>如果配置多人使用，可以将配置文件中的server_port和password这两行删掉，然后插入以下代码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">“port_password”:&#123;</span><br><span class="line">“1024”:”password1″,</span><br><span class="line">“1023”:”password2″,</span><br><span class="line">“8080”:”password3″</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><br>这样其他人只需要输入相应的端口和密码就能使用，可以实现一台服务器多人使用。</p>
 
       
@@ -457,8 +457,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -522,6 +531,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-安装"><span class="nav-number">1.</span> <span class="nav-text">1. 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-配置"><span class="nav-number">2.</span> <span class="nav-text">2.配置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
